@@ -52,6 +52,8 @@
 		2AE2DB491ABA95DB007F7026 /* MMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DB481ABA95DB007F7026 /* MMNavigationController.m */; };
 		2AE2DB4C1ABA9781007F7026 /* MMExampleDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DB4B1ABA9781007F7026 /* MMExampleDrawerVisualStateManager.m */; };
 		2AE2DB4E1ABA9868007F7026 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2DB4D1ABA9868007F7026 /* Main.storyboard */; };
+		2AE2DB621ABB473A007F7026 /* RightIconTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DB601ABB473A007F7026 /* RightIconTableViewCell.m */; };
+		2AE2DB631ABB473A007F7026 /* RightIconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AE2DB611ABB473A007F7026 /* RightIconTableViewCell.xib */; };
 		967538DF7B6A6FF26A5A999E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6293626BB5F4722BB84DEE2C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +127,9 @@
 		2AE2DB4A1ABA9781007F7026 /* MMExampleDrawerVisualStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMExampleDrawerVisualStateManager.h; sourceTree = "<group>"; };
 		2AE2DB4B1ABA9781007F7026 /* MMExampleDrawerVisualStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMExampleDrawerVisualStateManager.m; sourceTree = "<group>"; };
 		2AE2DB4D1ABA9868007F7026 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2AE2DB5F1ABB473A007F7026 /* RightIconTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightIconTableViewCell.h; sourceTree = "<group>"; };
+		2AE2DB601ABB473A007F7026 /* RightIconTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightIconTableViewCell.m; sourceTree = "<group>"; };
+		2AE2DB611ABB473A007F7026 /* RightIconTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightIconTableViewCell.xib; sourceTree = "<group>"; };
 		4C03503F093381A2FBDB720C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6293626BB5F4722BB84DEE2C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -243,6 +248,9 @@
 				2AE2DAF91ABA8AF5007F7026 /* ETCollectionViewCell.h */,
 				2AE2DAFA1ABA8AF5007F7026 /* ETCollectionViewCell.m */,
 				2AE2DAFB1ABA8AF5007F7026 /* ETCollectionViewCell.xib */,
+				2AE2DB5F1ABB473A007F7026 /* RightIconTableViewCell.h */,
+				2AE2DB601ABB473A007F7026 /* RightIconTableViewCell.m */,
+				2AE2DB611ABB473A007F7026 /* RightIconTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -426,6 +434,7 @@
 				2AE2DB3A1ABA8DD6007F7026 /* a24.jpg in Resources */,
 				2AE2DB221ABA8DD6007F7026 /* a0.jpg in Resources */,
 				2AE2DAD81ABA85C2007F7026 /* Images.xcassets in Resources */,
+				2AE2DB631ABB473A007F7026 /* RightIconTableViewCell.xib in Resources */,
 				2AE2DB401ABA8DD6007F7026 /* a30.jpg in Resources */,
 				2AE2DB3D1ABA8DD6007F7026 /* a27.jpg in Resources */,
 			);
@@ -481,6 +490,7 @@
 				2AE2DB461ABA9535007F7026 /* RightViewController.m in Sources */,
 				2AE2DB4C1ABA9781007F7026 /* MMExampleDrawerVisualStateManager.m in Sources */,
 				2AE2DB491ABA95DB007F7026 /* MMNavigationController.m in Sources */,
+				2AE2DB621ABB473A007F7026 /* RightIconTableViewCell.m in Sources */,
 				2AE2DAD31ABA85C2007F7026 /* ViewController.m in Sources */,
 				2AE2DAFC1ABA8AF5007F7026 /* ETCollectionViewCell.m in Sources */,
 				2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */,
