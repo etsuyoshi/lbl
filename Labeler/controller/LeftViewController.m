@@ -120,7 +120,7 @@
 }
 
 
-#pragma mark - tableview
+#pragma mark - tableview delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 
     return 1;

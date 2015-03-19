@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RightViewController : UIViewController
+<UITableViewDelegate,
+UITableViewDataSource>
 
 @end
