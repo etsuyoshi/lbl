@@ -1,0 +1,67 @@
+//
+//  PrefixHeader.pch
+//  Labeler
+//
+//  Created by EndoTsuyoshi on 2015/03/19.
+//  Copyright (c) 2015年 com.endo. All rights reserved.
+//
+
+#ifdef __OBJC__
+//オフラインでの起動できるように、かつ
+//カテゴリや特集画像、個別の商品画像をv２やオリジナルで取得＆オンラインチェックしない＆端末情報保存しない
+//    #define NO_NET_TEST
+// google analytics
+//#import "GAI.h"
+//#import "GAIDictionaryBuilder.h"
+//#import "GAIFields.h"
+
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+//#import "UIFont+Common.h"
+
+//#import "AppDelegate.h"
+//#import "ETCipherClass.h"
+//#import "ETFavoriteClass.h"
+#import "ETCommonMethods.h"
+////#import "ETFollowClass"
+//
+//#import "ETDefaultInfo.h"
+//#import "ETBuyerAPIClient.h"
+//#import "ETUserManager.h"
+//#import "ETBuyerAPIClientV2.h"
+////    #import "UIImageView+WebCache.h"
+//#import "AFNetworking.h"
+//#import "UIImageView+AFNetworking.h"
+//#import "ETCoreImageHelper.h"
+//#import "UICKeyChainStore.h"
+//#import "UIColor+HTColor.h"
+//#import <Crashlytics/Crashlytics.h>
+//#import <SDWebImage/UIImageView+WebCache.h>
+//
+//#import "UIColor+ETColor.h"
+//#import "ETVariationStockButton.h"
+//#import "SVProgressHUD.h"
+////    #import "ETSuperButton.h"
+//
+//#import "ETString.h"
+//#import "ETVariation.h"
+//
+//#import "ETLoginViewController.h"
+//#import "ETCartBadgeBarButtonItem.h"
+#endif
+
+
+
+#if DEBUG
+#else
+#   define NSLog( args... )
+#endif
+
+
+static BOOL OSVersionIsAtLeastiOS7() {
+    return (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1);
+}
+
+
