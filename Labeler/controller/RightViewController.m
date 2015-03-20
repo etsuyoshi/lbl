@@ -45,6 +45,8 @@ typedef enum : NSInteger{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+        
+    
     self.view.backgroundColor = [UIColor greenColor];
     
     
@@ -52,8 +54,9 @@ typedef enum : NSInteger{
                     CGRectMake(0, 0, self.view.bounds.size.width,30)];
     labelExplain.text = @"テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト";
     labelExplain.font = [UIFont systemFontOfSize:17.f];
+    labelExplain.numberOfLines = 0;
     [labelExplain sizeToFit];
-    heightRowIcon = 300;
+    heightRowIcon = 200;
     heightRowExplain = labelExplain.bounds.size.height;
     heightRowProfileConfig = 60;
     heightRowLogout = 60;
@@ -61,8 +64,11 @@ typedef enum : NSInteger{
     NSLog(@"heightRowExplain = %d", heightRowExplain);
     
     menuRightTableview =
-    [[UITableView alloc]initWithFrame:self.view.bounds
-                                style:UITableViewStylePlain];
+    [[UITableView alloc]
+     initWithFrame:
+     CGRectMake(0, 64, self.view.bounds.size.width,
+                self.view.bounds.size.height-64)
+     style:UITableViewStylePlain];
     menuRightTableview.delegate = self;
     menuRightTableview.dataSource = self;
     
@@ -76,6 +82,8 @@ typedef enum : NSInteger{
 
 -(void)viewWillAppear:(BOOL)animated{
     [super  viewWillAppear:animated];
+    
+    [menuRightTableview reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,24 +104,28 @@ typedef enum : NSInteger{
 
 #pragma mark - tableview delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
+    NSLog(@"%s", __func__);
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"%s", __func__);
     //arrLeftItemsに加えて、下書き中のレビューとLABEL買い物アプリへの項目
     return 4;//アイコン、説明文、マイプロフィール設定リンク、ログアウト
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    NSLog(@"%s", __func__);
     return 0.1f;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    NSLog(@"%s", __func__);
     return 0.1f;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%s", __func__);
     switch ((CellType)indexPath.row) {
         case CellTypeIcon:{
             return heightRowIcon;
@@ -141,6 +153,8 @@ typedef enum : NSInteger{
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%s, indexpath = %@", __func__, indexPath);
+    
     static NSString *CellIdentifier = nil;
     if(CellIdentifier == nil)
         CellIdentifier =
@@ -155,33 +169,49 @@ typedef enum : NSInteger{
                 reuseIdentifier:CellIdentifier];
     }
     
+    for(UIView *subview in cell.contentView.subviews){
+        [subview removeFromSuperview];
+        
+        for(UIView *subsubview in subview.subviews){
+            [subsubview removeFromSuperview];
+        }
+    }
+    
     
     switch ((CellType)indexPath.row) {
         case CellTypeIcon:{
+            NSLog(@"celltypeicon");
             
-            static NSString *CellIdentifier1 = @"rightIconTableViewCell";
+            static NSString *CellIdentifierIcon = @"rightIconTableViewCell";
             
-            RightIconTableViewCell *cell =
-            [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+            RightIconTableViewCell *cellIcon =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierIcon];
             
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            cell.imageView.image = [UIImage imageNamed:@"a2.jpg"];
-            
-            return cell;
+            //真円にする
+            //画像を設定する
+            //
+            [self updateCellIcon:cellIcon];
+            return cellIcon;
             
             
             
             break;
         }
-//        case CellTypeExplain:{
-//            return heightRowExplain;
-//            break;
-//        }
-//        case CellTypeProfileConfig:{
-//            return heightRowProfileConfig;
-//            break;
-//        }
+        case CellTypeExplain:{
+            
+            NSLog(@"celltypeexplain");
+//            cell.imageView.image = [UIImage imageNamed:@"a2.jpg"];
+            cell.imageView.image = nil;
+            [cell.contentView addSubview:labelExplain];
+            return cell;
+            break;
+        }
+        case CellTypeProfileConfig:{
+            NSLog(@"config");
+            cell.imageView.image = [UIImage imageNamed:@"icon_arrowToRight"];
+            return cell;
+            break;
+        }
 //        case CellTypeLogout:{
 //            return heightRowLogout;
 //            break;
@@ -194,7 +224,21 @@ typedef enum : NSInteger{
 //            break;
     }
     
+    NSLog(@"default");
     return cell;
+    
+}
+
+-(void)updateCellIcon:(RightIconTableViewCell *)cell{
+    
+    int radius = 80;
+    cell.imageView.frame = CGRectMake(0, 0, radius*2, radius*2);
+    cell.imageView.layer.cornerRadius = radius;
+    cell.imageView.center = CGPointMake(cell.bounds.size.width/2,
+                                        radius);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    cell.imageView.image = [UIImage imageNamed:@"a2.jpg"];
     
 }
 
