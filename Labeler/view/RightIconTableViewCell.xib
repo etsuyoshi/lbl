@@ -15,26 +15,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpp-CM-EMT">
-                        <rect key="frame" x="85" y="0.0" width="150" height="150.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="320" id="2mR-Is-nBK"/>
-                            <constraint firstAttribute="width" secondItem="hpp-CM-EMT" secondAttribute="height" multiplier="1:1" id="c7Y-hi-ZkD"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHUNKI.B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gp5-3J-OQe">
-                        <rect key="frame" x="119" y="158" width="81" height="21"/>
+                        <rect key="frame" x="119.5" y="158.5" width="80.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpp-CM-EMT">
+                        <rect key="frame" x="85" y="0.0" width="150" height="150.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="2mR-Is-nBK"/>
+                            <constraint firstAttribute="width" secondItem="hpp-CM-EMT" secondAttribute="height" multiplier="1:1" id="c7Y-hi-ZkD"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hpp-CM-EMT" firstAttribute="centerX" secondItem="gp5-3J-OQe" secondAttribute="centerX" constant="0.5" id="a8g-FU-1qC"/>
-                    <constraint firstAttribute="centerX" secondItem="hpp-CM-EMT" secondAttribute="centerX" id="eHm-uy-Jce"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="gp5-3J-OQe" secondAttribute="bottom" id="hk9-bg-xDj"/>
-                    <constraint firstAttribute="centerX" secondItem="gp5-3J-OQe" secondAttribute="centerX" id="jy4-A6-PJ3"/>
-                    <constraint firstItem="hpp-CM-EMT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tkc-M3-tbi"/>
+                    <constraint firstAttribute="centerX" secondItem="hpp-CM-EMT" secondAttribute="centerX" id="Db3-cB-aNf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gp5-3J-OQe" secondAttribute="bottom" constant="0.5" id="NL0-m3-RW6"/>
+                    <constraint firstAttribute="centerX" secondItem="gp5-3J-OQe" secondAttribute="centerX" id="fjR-w1-cZh"/>
+                    <constraint firstItem="hpp-CM-EMT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yVv-8C-HfE"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

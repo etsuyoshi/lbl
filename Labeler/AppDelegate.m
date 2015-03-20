@@ -81,7 +81,9 @@
                                  rightDrawerViewController:rightSideDrawerViewController];
     }
     [self.drawerController setRestorationIdentifier:@"MMDrawer"];
-    [self.drawerController setMaximumRightDrawerWidth:200.0];
+    //画面横幅に対して８掛け
+    [self.drawerController setMaximumRightDrawerWidth:
+     [UIScreen mainScreen].bounds.size.width*0.9f];
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
