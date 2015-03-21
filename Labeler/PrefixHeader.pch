@@ -50,6 +50,9 @@
 //
 //#import "ETLoginViewController.h"
 //#import "ETCartBadgeBarButtonItem.h"
+
+
+#define RIGHT_SIDE_VIEW_WIDTH_RATIO 0.9f
 #endif
 
 
