@@ -48,11 +48,11 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
-// CrashlyticsFramework
-#define COCOAPODS_POD_AVAILABLE_CrashlyticsFramework
-#define COCOAPODS_VERSION_MAJOR_CrashlyticsFramework 2
-#define COCOAPODS_VERSION_MINOR_CrashlyticsFramework 2
-#define COCOAPODS_VERSION_PATCH_CrashlyticsFramework 9
+// Fabric/Crashlytics
+#define COCOAPODS_POD_AVAILABLE_Fabric_Crashlytics
+#define COCOAPODS_VERSION_MAJOR_Fabric_Crashlytics 1
+#define COCOAPODS_VERSION_MINOR_Fabric_Crashlytics 2
+#define COCOAPODS_VERSION_PATCH_Fabric_Crashlytics 0
 
 // GoogleAnalytics-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
