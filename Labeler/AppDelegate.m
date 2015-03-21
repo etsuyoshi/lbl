@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 #import "MMDrawerController.h"
 //#import "MMCenterViewController.h"
@@ -40,6 +42,8 @@
 //    _window = [[UIWindow alloc] initWithFrame:frameForWindow];
 //    [_window makeKeyAndVisible];
 //    [_window addSubview:self.navigationController.view];
+    
+    [Fabric with:@[CrashlyticsKit]];
     
     //mmDrawerControllerで実行する場合
     UIViewController * leftSideDrawerViewController =

@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CrashlyticsFramework (2.2.9)
+  - Fabric/Crashlytics (1.2)
   - GoogleAnalytics-iOS-SDK (3.0.8)
   - MMDrawerController (0.5.7):
     - MMDrawerController/Core (= 0.5.7)
@@ -42,7 +42,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.3)
-  - CrashlyticsFramework
+  - Fabric/Crashlytics
   - GoogleAnalytics-iOS-SDK (= 3.0.8)
   - MMDrawerController (~> 0.5.7)
   - SDWebImage
@@ -51,7 +51,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  CrashlyticsFramework: 013bae3c30d5b9bfad1aa10008e155e18473984c
+  Fabric: acd4f0864b7d9e054f799d27be2843e1db08fad4
   GoogleAnalytics-iOS-SDK: a3206c68ee5f2a014ed67383d1f779072b653988
   MMDrawerController: c3ab7a318ddc7e2bcd133139c3161af08c6e1197
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29

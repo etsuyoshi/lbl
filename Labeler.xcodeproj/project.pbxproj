@@ -18,6 +18,9 @@
 		2A1786261ABD3B68005DD654 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A1786251ABD3B68005DD654 /* search.png */; };
 		2A1786281ABD3E0D005DD654 /* search2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A1786271ABD3E0D005DD654 /* search2.png */; };
 		2A17862C1ABD415E005DD654 /* search2_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A17862B1ABD415E005DD654 /* search2_small.png */; };
+		2A1786301ABD4567005DD654 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A17862E1ABD4567005DD654 /* Crashlytics.framework */; };
+		2A1786311ABD4567005DD654 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A17862F1ABD4567005DD654 /* Fabric.framework */; };
+		2A1786341ABD9B79005DD654 /* CreateLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1786331ABD9B79005DD654 /* CreateLabelViewController.m */; };
 		2AE2DACD1ABA85C2007F7026 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACC1ABA85C2007F7026 /* main.m */; };
 		2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACF1ABA85C2007F7026 /* AppDelegate.m */; };
 		2AE2DAD31ABA85C2007F7026 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DAD21ABA85C2007F7026 /* ViewController.m */; };
@@ -98,6 +101,10 @@
 		2A1786251ABD3B68005DD654 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		2A1786271ABD3E0D005DD654 /* search2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search2.png; sourceTree = "<group>"; };
 		2A17862B1ABD415E005DD654 /* search2_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search2_small.png; sourceTree = "<group>"; };
+		2A17862E1ABD4567005DD654 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		2A17862F1ABD4567005DD654 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		2A1786321ABD9B79005DD654 /* CreateLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateLabelViewController.h; sourceTree = "<group>"; };
+		2A1786331ABD9B79005DD654 /* CreateLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateLabelViewController.m; sourceTree = "<group>"; };
 		2AE2DAC71ABA85C2007F7026 /* Labeler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Labeler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE2DACB1ABA85C2007F7026 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE2DACC1ABA85C2007F7026 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -172,7 +179,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A1786301ABD4567005DD654 /* Crashlytics.framework in Frameworks */,
 				967538DF7B6A6FF26A5A999E /* libPods.a in Frameworks */,
+				2A1786311ABD4567005DD654 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +311,8 @@
 				2AE2DB421ABA9523007F7026 /* LeftViewController.m */,
 				2AE2DB441ABA9535007F7026 /* RightViewController.h */,
 				2AE2DB451ABA9535007F7026 /* RightViewController.m */,
+				2A1786321ABD9B79005DD654 /* CreateLabelViewController.h */,
+				2A1786331ABD9B79005DD654 /* CreateLabelViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -397,6 +408,8 @@
 		C4D9355E51408E8A3AAE1FFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A17862E1ABD4567005DD654 /* Crashlytics.framework */,
+				2A17862F1ABD4567005DD654 /* Fabric.framework */,
 				6293626BB5F4722BB84DEE2C /* libPods.a */,
 			);
 			name = Frameworks;
@@ -414,6 +427,7 @@
 				2AE2DAC41ABA85C2007F7026 /* Frameworks */,
 				2AE2DAC51ABA85C2007F7026 /* Resources */,
 				A134F64A785E5C91C5FC93C4 /* Copy Pods Resources */,
+				2A17862D1ABD453A005DD654 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -561,6 +575,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		2A17862D1ABD453A005DD654 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run fda572617282d21daffc4e05e76a13d1670c18bb 78aa50fb7ac5b691b7d0364f5c3e3584335ffbe71af39abdb13e9cf6f87b920d";
+		};
 		A134F64A785E5C91C5FC93C4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -590,6 +617,7 @@
 				2AE2DB491ABA95DB007F7026 /* MMNavigationController.m in Sources */,
 				2AE2DB621ABB473A007F7026 /* RightIconTableViewCell.m in Sources */,
 				2AE2DAD31ABA85C2007F7026 /* ViewController.m in Sources */,
+				2A1786341ABD9B79005DD654 /* CreateLabelViewController.m in Sources */,
 				2AE2DAFC1ABA8AF5007F7026 /* ETCollectionViewCell.m in Sources */,
 				2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */,
 				2A1786191ABD14A5005DD654 /* ImageCenterTableViewCell.m in Sources */,
@@ -716,6 +744,10 @@
 			baseConfigurationReference = 2303FA7BF5A59B64A28921CF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Labeler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -728,6 +760,10 @@
 			baseConfigurationReference = 4C03503F093381A2FBDB720C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Labeler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

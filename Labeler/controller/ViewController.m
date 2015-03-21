@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ETCollectionViewCell.h"
+#import "CreateLabelViewController.h"
 
 @interface ViewController ()
 
@@ -252,6 +253,13 @@
 
 -(void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"%s", __func__);
+    
+    
+    CreateLabelViewController *vc = [[CreateLabelViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 
 }
 
