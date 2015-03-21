@@ -8,7 +8,8 @@
 
 #import "RightViewController.h"
 #import "RightIconTableViewCell.h"
-
+#import "LeftArrowTableViewCell.h"
+#import "ImageCenterTableViewCell.h"
 
 @interface RightViewController ()
 
@@ -25,6 +26,9 @@ typedef enum : NSInteger{
 @end
 
 @implementation RightViewController{
+    
+    UIImageView *navBarHairlineImageView;
+    
     
     UITableView *menuRightTableview;
     UILabel *labelExplain;
@@ -45,16 +49,25 @@ typedef enum : NSInteger{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-        
+    //ナビバーのアンダーラインを消去するため
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     
-    self.view.backgroundColor = [UIColor greenColor];
+    [self setNavigationBar];
     
+//    self.view.backgroundColor = [UIColor greenColor];
+    
+    int marginSideInLabel = 30;
+    //MMDrawerの特性として右側が少し表示されないのでその分(以下)を考慮したマージンにする必要がある
+    int widthHidden = [UIScreen mainScreen].bounds.size.width * (1 - RIGHT_SIDE_VIEW_WIDTH_RATIO);
     
     labelExplain = [[UILabel alloc]initWithFrame:
-                    CGRectMake(0, 0, self.view.bounds.size.width,30)];
-    labelExplain.text = @"テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト";
-    labelExplain.font = [UIFont systemFontOfSize:17.f];
+                    CGRectMake(marginSideInLabel, 0,
+                               self.view.bounds.size.width-widthHidden-marginSideInLabel*2,30)];
+    labelExplain.text = @"テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト";
+    labelExplain.font = [UIFont systemFontOfSize:15.f];
     labelExplain.numberOfLines = 0;
+    labelExplain.textColor = [UIColor lightGrayColor];
+    labelExplain.textAlignment = NSTextAlignmentCenter;
     [labelExplain sizeToFit];
     heightRowIcon = 200;
     heightRowExplain = labelExplain.bounds.size.height;
@@ -66,15 +79,23 @@ typedef enum : NSInteger{
     menuRightTableview =
     [[UITableView alloc]
      initWithFrame:
-     CGRectMake(0, 64, self.view.bounds.size.width,
-                self.view.bounds.size.height-64)
+     CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width * RIGHT_SIDE_VIEW_WIDTH_RATIO+1,
+                self.view.bounds.size.height)
      style:UITableViewStylePlain];
     menuRightTableview.delegate = self;
     menuRightTableview.dataSource = self;
+//    menuRightTableview.backgroundColor = [UIColor yellowColor];
     
     //tableViewにcellを登録する
-    UINib *nib = [UINib nibWithNibName:@"RightIconTableViewCell" bundle:nil];
-    [menuRightTableview registerNib:nib forCellReuseIdentifier:@"rightIconTableViewCell"];
+    UINib *nibIcon = [UINib nibWithNibName:@"RightIconTableViewCell" bundle:nil];
+    [menuRightTableview registerNib:nibIcon forCellReuseIdentifier:@"rightIconTableViewCell"];
+    
+    UINib *nibLeftArrow = [UINib nibWithNibName:@"LeftArrowTableViewCell" bundle:nil];
+    [menuRightTableview registerNib:nibLeftArrow forCellReuseIdentifier:@"leftArrowTableViewCell"];
+    
+    UINib *nibCenterImage = [UINib nibWithNibName:@"ImageCenterTableViewCell" bundle:nil];
+    [menuRightTableview registerNib:nibCenterImage forCellReuseIdentifier:@"imageCenterTableViewCell"];
+    
     
     
     [self.view addSubview:menuRightTableview];
@@ -82,8 +103,17 @@ typedef enum : NSInteger{
 
 -(void)viewWillAppear:(BOOL)animated{
     [super  viewWillAppear:animated];
+    //ナビバーのアンダーラインを消去するため
+    navBarHairlineImageView.hidden = YES;
     
     [menuRightTableview reloadData];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    //ナビバーのアンダーラインを消去するため
+    navBarHairlineImageView.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -187,6 +217,8 @@ typedef enum : NSInteger{
             RightIconTableViewCell *cellIcon =
             [tableView dequeueReusableCellWithIdentifier:CellIdentifierIcon];
             
+            cellIcon.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             //真円にする
             //画像を設定する
             //
@@ -203,23 +235,43 @@ typedef enum : NSInteger{
 //            cell.imageView.image = [UIImage imageNamed:@"a2.jpg"];
             cell.imageView.image = nil;
             [cell.contentView addSubview:labelExplain];
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             break;
         }
         case CellTypeProfileConfig:{
             NSLog(@"config");
-            cell.imageView.image = [UIImage imageNamed:@"icon_arrowToRight"];
-            return cell;
+            //通常せるの場合
+            //cell.imageView.image = [UIImage imageNamed:@"icon_arrowToRight"];
+            
+            static NSString *CellIdentifierArrow = @"leftArrowTableViewCell";
+            
+            LeftArrowTableViewCell *cellArrow =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierArrow];
+            
+            cellArrow.lblItemName.text = @"マイプロフィール設定";
+            
+            return cellArrow;
             break;
         }
-//        case CellTypeLogout:{
+        case CellTypeLogout:{
 //            return heightRowLogout;
-//            break;
-//        }
-//        case CellTypeFinal:{
-//            return 0;
-//            break;
-//        }
+            static NSString *CellIdentifierImage = @"imageCenterTableViewCell";
+            ImageCenterTableViewCell *cellImage =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierImage];
+            
+            //cellImage.imvCenter.image = [UIImage imageNamed:@"img_logout"];
+            cellImage.lblCenter.text = @"ログアウト";
+            
+            cellImage.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cellImage;
+            break;
+        }
+        case CellTypeFinal:{
+            return cell;//ここに制御が移ることはない
+            break;
+        }
 //        default:
 //            break;
     }
@@ -231,19 +283,19 @@ typedef enum : NSInteger{
 
 -(void)updateCellIcon:(RightIconTableViewCell *)cell{
     
-    int radius = 80;
-    cell.imageView.frame = CGRectMake(0, 0, radius*2, radius*2);
-    cell.imageView.layer.cornerRadius = radius;
-    cell.imageView.center = CGPointMake(cell.bounds.size.width/2,
-                                        radius);
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    cell.imageView.image = [UIImage imageNamed:@"a2.jpg"];
+    cell.imvFace.image = [UIImage imageNamed:@"a2.jpg"];
+    
+    NSLog(@"cell.imvFace.frame = %@",
+          NSStringFromCGRect(cell.imvFace.frame));
     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%s", __func__);
+    
+//    if(indexPath.row == CellTypeProfileConfig){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    }
 }
 
 
@@ -286,6 +338,56 @@ typedef enum : NSInteger{
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
 }
+
+
+-(void)setNavigationBar{
+    
+    //ナビバーのアンダーラインを消去するため
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"NavigationBarBackground"]//存在しない画像
+                       forBarPosition:UIBarPositionAny
+                           barMetrics:UIBarMetricsDefault];
+    [navigationBar setShadowImage:[UIImage new]];
+    
+    
+    
+    
+    
+    
+    
+    //right-button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@"icon_close"]
+     forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, 40, 35);
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+
+    
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+    
+    
+    
+}
+
+-(void)close{
+    NSLog(@"%s", __func__);
+}
+
+
+//ナビバーのアンダーラインを消去するため
+- (UIImageView *)findHairlineImageViewUnder:(UIView *)view {
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+        return (UIImageView *)view;
+    }
+    for (UIView *subview in view.subviews) {
+        UIImageView *imageView = [self findHairlineImageViewUnder:subview];
+        if (imageView) {
+            return imageView;
+        }
+    }
+    return nil;
+}
+
 
 
 @end

@@ -7,8 +7,25 @@
 //
 
 #import "LeftViewController.h"
+#import "LeftArrowTableViewCell.h"
+#import "ImageCenterTableViewCell.h"
+
+#define HEIGHT_CELL_TYPE_ORDINARY 55
+#define HEIGHT_CELL_TYPE_LARGE 60
 
 @interface LeftViewController ()
+typedef enum : NSInteger{
+    LeftCellTypeSearch = 0,
+    LeftCellTypeMyItem,
+    LeftCellTypeNewReview,
+    LeftCellTypeFollowLabeler,
+    LeftCellTypeFollowBrand,
+    LeftCellTypeUnderWrite,
+    LeftCellTypeBuyAppli,
+    LeftCellTypeFinal
+} LeftCellType;
+
+
 
 @end
 
@@ -17,8 +34,8 @@
     
     UITableView *menuLeftTable;
     
-    NSArray *arrLeftItems;
-    NSArray *arrLeftBottomItems;
+//    NSArray *arrLeftItems;
+//    NSArray *arrLeftBottomItems;
 }
 -(id)init{
     self = [super init];
@@ -36,41 +53,55 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    arrLeftItems =
-    [NSArray arrayWithObjects:
-     @"マイアイテム",
-     @"最新レビューの一覧",
-     @"フォロー中のLABELER一覧",
-     @"フォロー中のブランド一覧",
-     nil];
-    
-    arrLeftBottomItems =
-    [NSArray arrayWithObjects:
-     @"下書き中のレビュー",
-     @"LABEL 買い物アプリへ",
-     nil];
-    
-    
-    tfSearch = [[UITextField alloc]
-                initWithFrame:
-                CGRectMake(0, 75, self.view.bounds.size.width, 70)];
-    tfSearch.placeholder = @"search";
-    tfSearch.borderStyle = UITextBorderStyleRoundedRect;
-    tfSearch.delegate = self;
-    [self.view addSubview:tfSearch];
+//    arrLeftItems =
+//    [NSArray arrayWithObjects:
+//     @"マイアイテム",
+//     @"最新レビューの一覧",
+//     @"フォロー中のLABELER一覧",
+//     @"フォロー中のブランド一覧",
+//     nil];
+//    
+//    arrLeftBottomItems =
+//    [NSArray arrayWithObjects:
+//     @"下書き中のレビュー",
+//     @"LABEL 買い物アプリへ",
+//     nil];
     
     
+    
+    
+    //右に１px大きくしているのはcenter-controllerの距離が一瞬見えてしまわないように。
     menuLeftTable =
     [[UITableView alloc]
-     initWithFrame:CGRectMake(0, tfSearch.frame.origin.y + tfSearch.bounds.size.height,
-                              self.view.bounds.size.width,
-                              self.view.bounds.size.height -
-                              (tfSearch.frame.origin.y + tfSearch.bounds.size.height))
-     style:UITableViewStyleGrouped];
+     initWithFrame:
+     CGRectMake(0, 0,
+                self.view.bounds.size.width * RIGHT_SIDE_VIEW_WIDTH_RATIO + 1,
+                //[UIScreen mainScreen].bounds.size.width * RIGHT_SIDE_VIEW_WIDTH_RATIO +1,
+                self.view.bounds.size.height)
+     style:UITableViewStylePlain];
     menuLeftTable.delegate = self;
     menuLeftTable.dataSource = self;
+    menuLeftTable.scrollEnabled = false;
+    //menuLeftTable.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:menuLeftTable];
     
+    
+    //tableViewにcellを登録する
+    UINib *nibLeftArrow = [UINib nibWithNibName:@"LeftArrowTableViewCell" bundle:nil];
+    [menuLeftTable registerNib:nibLeftArrow forCellReuseIdentifier:@"leftArrowTableViewCell"];
+    
+    UINib *nibCenterImage = [UINib nibWithNibName:@"ImageCenterTableViewCell" bundle:nil];
+    [menuLeftTable registerNib:nibCenterImage forCellReuseIdentifier:@"imageCenterTableViewCell"];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     
     
 }
@@ -128,19 +159,42 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //arrLeftItemsに加えて、下書き中のレビューとLABEL買い物アプリへの項目
-    return arrLeftItems.count + arrLeftBottomItems.count;
+    return LeftCellTypeFinal;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0;
+    return 0.1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
+    return 0.1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    NSLog(@"%s, indexpath.row = %d", __func__, indexPath.row);
+    switch ((LeftCellType)indexPath.row) {
+        case LeftCellTypeSearch:
+        case LeftCellTypeMyItem:
+        case LeftCellTypeNewReview:
+        case LeftCellTypeFollowLabeler:
+        case LeftCellTypeFollowBrand:{
+            return HEIGHT_CELL_TYPE_ORDINARY;
+            break;
+        }
+            
+        case LeftCellTypeUnderWrite:
+        case LeftCellTypeBuyAppli:{
+            return HEIGHT_CELL_TYPE_LARGE;
+            break;
+        }
+        
+        default:{
+            
+            break;
+        }
+    }
+    //念のため
+    return HEIGHT_CELL_TYPE_ORDINARY;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -170,38 +224,161 @@
         }
     }
     
-//    switch ((int)indexPath.row) {
-//        case 0:{
-//            <#statements#>
-//            break;
-//        }
-//        case 1:{
-//            <#statements#>
-//            break;
-//        }
-//        case 0:{
-//            <#statements#>
-//            break;
-//        }case 0:{
-//            <#statements#>
-//            break;
-//        }
-//        case 0:{
-//            <#statements#>
-//            break;
-//        }
-//        case 0:{
-//            <#statements#>
-//            break;
-//        }
-//        default:
-//            break;
-//    }
-    if(indexPath.row < arrLeftItems.count){
-        [cell.textLabel setText:arrLeftItems[(int)indexPath.row]];
-    }else{//arrLeftBottomItems
-        [cell.textLabel setText:arrLeftBottomItems[(int)indexPath.row-arrLeftItems.count]];
+    
+    
+
+    
+    
+    switch ((LeftCellType)indexPath.row) {
+        case LeftCellTypeSearch:{
+            
+            
+            cell.contentView.backgroundColor = [UIColor colorWithRed:30.f/255.f
+                                                               green:30.f/255.f
+                                                                blue:30.f/255.f
+                                                               alpha:1.f];
+            
+            int marginTop = 10;
+            int marginLeft = 13;
+            UIView *viewWhite =
+            [[UIView alloc]
+             initWithFrame:CGRectMake(marginLeft, marginTop,
+                                      [UIScreen mainScreen].bounds.size.width * RIGHT_SIDE_VIEW_WIDTH_RATIO - 2 * marginLeft,
+                                      HEIGHT_CELL_TYPE_ORDINARY - 2 * marginTop)];
+            viewWhite.backgroundColor = [UIColor whiteColor];
+            [cell.contentView addSubview:viewWhite];
+            
+            
+            
+            
+            tfSearch = [[UITextField alloc]
+                        initWithFrame:
+                        CGRectMake(viewWhite.frame.origin.x + 10,
+                                   viewWhite.frame.origin.y,
+                                   viewWhite.bounds.size.width,
+                                   viewWhite.bounds.size.height)];
+                        //viewWhite.frame];
+            tfSearch.placeholder = @"  search";
+            tfSearch.borderStyle = UITextBorderStyleNone;
+            tfSearch.delegate = self;
+            tfSearch.leftViewMode = UITextFieldViewModeAlways;
+//            tfSearch.leftViewMode =
+//            //UITextFieldViewModeWhileEditing;
+//            UITextFieldViewModeUnlessEditing;
+            tfSearch.returnKeyType = UIReturnKeySearch;
+            
+            
+            
+            //検索フィールドに表示するための虫眼鏡(color=lightGray)
+            UIImage *image = [UIImage imageNamed:@"search2_small"];
+            UIImageView *imvSearch = [[UIImageView alloc]init];
+            imvSearch.frame = CGRectMake(0, 0, tfSearch.bounds.size.height/3, tfSearch.bounds.size.height/3);
+            imvSearch.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            imvSearch.tintColor = [UIColor lightGrayColor];
+            
+            tfSearch.leftView = imvSearch;
+            [cell.contentView addSubview:tfSearch];
+            
+            
+            
+            
+            
+            
+            break;
+        }
+            
+        case LeftCellTypeMyItem:{
+            
+            static NSString *CellIdentifierArrow = @"leftArrowTableViewCell";
+            
+            LeftArrowTableViewCell *cellArrow =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierArrow];
+            
+            cellArrow.lblItemName.text = @"マイアイテム";
+            
+            return cellArrow;
+            break;
+        }
+        case LeftCellTypeNewReview:{
+            
+            static NSString *CellIdentifierArrow = @"leftArrowTableViewCell";
+            
+            LeftArrowTableViewCell *cellArrow =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierArrow];
+            
+            cellArrow.lblItemName.text = @"最新レビューの一覧";
+            
+            return cellArrow;
+            break;
+            
+            break;
+        }
+        case LeftCellTypeFollowLabeler:{
+            
+            static NSString *CellIdentifierArrow = @"leftArrowTableViewCell";
+            
+            LeftArrowTableViewCell *cellArrow =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierArrow];
+            
+            cellArrow.lblItemName.text = @"フォロー中のLABELER一覧";
+            
+            return cellArrow;
+            break;
+        }case LeftCellTypeFollowBrand:{
+            
+            static NSString *CellIdentifierArrow = @"leftArrowTableViewCell";
+            
+            LeftArrowTableViewCell *cellArrow =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierArrow];
+            
+            cellArrow.lblItemName.text = @"フォロー中のブランド一覧";
+            
+            return cellArrow;
+            break;
+        }
+        case LeftCellTypeUnderWrite:{
+            
+            static NSString *CellIdentifierImage = @"imageCenterTableViewCell";
+            ImageCenterTableViewCell *cellImage =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierImage];
+            
+            //cellImage.imvCenter.image = [UIImage imageNamed:@"img_logout"];
+            cellImage.lblCenter.text = @"下書き中のレビュー";
+            
+            cellImage.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cellImage;
+            
+            break;
+        }
+        case LeftCellTypeBuyAppli:{
+            
+            static NSString *CellIdentifierImage = @"imageCenterTableViewCell";
+            ImageCenterTableViewCell *cellImage =
+            [tableView dequeueReusableCellWithIdentifier:CellIdentifierImage];
+            
+            //cellImage.imvCenter.image = [UIImage imageNamed:@"img_logout"];
+            cellImage.lblCenter.text = @"LABEL 買い物アプリへ";
+            cellImage.lblCenter.backgroundColor =
+            [UIColor colorWithRed:200.f/255.f
+                            green:0 blue:0 alpha:1];
+            
+            cellImage.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cellImage;
+            
+            break;
+        }
+        case LeftCellTypeFinal:{
+            return nil;
+            break;
+        }
+        default:
+            break;
     }
+//    if(indexPath.row < arrLeftItems.count){
+//        [cell.textLabel setText:arrLeftItems[(int)indexPath.row]];
+//    }else{//arrLeftBottomItems
+//        [cell.textLabel setText:arrLeftBottomItems[(int)indexPath.row-arrLeftItems.count]];
+//    }
     
     return cell;
     
@@ -209,6 +386,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%s", __func__);
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

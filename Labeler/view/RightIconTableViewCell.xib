@@ -37,7 +37,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="imageView" destination="hpp-CM-EMT" id="UaT-Lj-df6"/>
+                <outlet property="imvFace" destination="hpp-CM-EMT" id="4dV-e6-jHQ"/>
                 <outlet property="lbl" destination="gp5-3J-OQe" id="Jih-N5-VSk"/>
             </connections>
             <point key="canvasLocation" x="165" y="215"/>

@@ -13,13 +13,13 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    self.imageView.layer.cornerRadius =
-    self.imageView.bounds.size.width/2;
+    self.imvFace.layer.cornerRadius =
+    self.imvFace.bounds.size.width/2;
     
-    self.imageView.contentMode =
+    self.imvFace.contentMode =
     UIViewContentModeScaleAspectFill;
     
-    self.imageView.clipsToBounds = YES;
+    self.imvFace.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

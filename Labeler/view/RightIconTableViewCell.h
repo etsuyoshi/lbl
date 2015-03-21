@@ -11,6 +11,6 @@
 @interface RightIconTableViewCell : UITableViewCell
 
 
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIImageView *imvFace;
 @property (nonatomic, strong) IBOutlet UILabel *lbl;
 @end
