@@ -21,6 +21,9 @@
 		2A1786301ABD4567005DD654 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A17862E1ABD4567005DD654 /* Crashlytics.framework */; };
 		2A1786311ABD4567005DD654 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A17862F1ABD4567005DD654 /* Fabric.framework */; };
 		2A1786341ABD9B79005DD654 /* CreateLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1786331ABD9B79005DD654 /* CreateLabelViewController.m */; };
+		2A1786381ABD9DDC005DD654 /* CreateLabelTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1786361ABD9DDC005DD654 /* CreateLabelTopTableViewCell.m */; };
+		2A1786391ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1786371ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib */; };
+		2A17863B1ABD9E7A005DD654 /* icon_arrowToLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A17863A1ABD9E7A005DD654 /* icon_arrowToLeft.png */; };
 		2AE2DACD1ABA85C2007F7026 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACC1ABA85C2007F7026 /* main.m */; };
 		2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACF1ABA85C2007F7026 /* AppDelegate.m */; };
 		2AE2DAD31ABA85C2007F7026 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DAD21ABA85C2007F7026 /* ViewController.m */; };
@@ -105,6 +108,10 @@
 		2A17862F1ABD4567005DD654 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		2A1786321ABD9B79005DD654 /* CreateLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateLabelViewController.h; sourceTree = "<group>"; };
 		2A1786331ABD9B79005DD654 /* CreateLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateLabelViewController.m; sourceTree = "<group>"; };
+		2A1786351ABD9DDC005DD654 /* CreateLabelTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateLabelTopTableViewCell.h; sourceTree = "<group>"; };
+		2A1786361ABD9DDC005DD654 /* CreateLabelTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateLabelTopTableViewCell.m; sourceTree = "<group>"; };
+		2A1786371ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateLabelTopTableViewCell.xib; sourceTree = "<group>"; };
+		2A17863A1ABD9E7A005DD654 /* icon_arrowToLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_arrowToLeft.png; sourceTree = "<group>"; };
 		2AE2DAC71ABA85C2007F7026 /* Labeler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Labeler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE2DACB1ABA85C2007F7026 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE2DACC1ABA85C2007F7026 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -211,6 +218,7 @@
 				2A1786271ABD3E0D005DD654 /* search2.png */,
 				2A1786251ABD3B68005DD654 /* search.png */,
 				2AE2DB651ABBB635007F7026 /* icon_arrowToRight.png */,
+				2A17863A1ABD9E7A005DD654 /* icon_arrowToLeft.png */,
 				2AE2DB661ABBB635007F7026 /* icon_close.png */,
 				2AE2DB671ABBB635007F7026 /* icon_menu.png */,
 				2AE2DB681ABBB635007F7026 /* icon_profile.png */,
@@ -335,6 +343,9 @@
 				2A17861B1ABD2459005DD654 /* LeftIconCenterImageTableViewCell.h */,
 				2A17861C1ABD2459005DD654 /* LeftIconCenterImageTableViewCell.m */,
 				2A17861D1ABD2459005DD654 /* LeftIconCenterImageTableViewCell.xib */,
+				2A1786351ABD9DDC005DD654 /* CreateLabelTopTableViewCell.h */,
+				2A1786361ABD9DDC005DD654 /* CreateLabelTopTableViewCell.m */,
+				2A1786371ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -509,6 +520,7 @@
 				2AE2DB3B1ABA8DD6007F7026 /* a25.jpg in Resources */,
 				2AE2DB311ABA8DD6007F7026 /* a15.jpg in Resources */,
 				2A1786281ABD3E0D005DD654 /* search2.png in Resources */,
+				2A1786391ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib in Resources */,
 				2AE2DB251ABA8DD6007F7026 /* a3.jpg in Resources */,
 				2AE2DB331ABA8DD6007F7026 /* a17.jpg in Resources */,
 				2A1786241ABD33ED005DD654 /* 01_top_removeTop.png in Resources */,
@@ -518,6 +530,7 @@
 				2AE2DB231ABA8DD6007F7026 /* a1.jpg in Resources */,
 				2AE2DB361ABA8DD6007F7026 /* a20.jpg in Resources */,
 				2AE2DB2D1ABA8DD6007F7026 /* a11.jpg in Resources */,
+				2A17863B1ABD9E7A005DD654 /* icon_arrowToLeft.png in Resources */,
 				2AE2DB2C1ABA8DD6007F7026 /* a10.jpg in Resources */,
 				2A17862C1ABD415E005DD654 /* search2_small.png in Resources */,
 				2AE2DB3F1ABA8DD6007F7026 /* a29.jpg in Resources */,
@@ -616,6 +629,7 @@
 				2AE2DB4C1ABA9781007F7026 /* MMExampleDrawerVisualStateManager.m in Sources */,
 				2AE2DB491ABA95DB007F7026 /* MMNavigationController.m in Sources */,
 				2AE2DB621ABB473A007F7026 /* RightIconTableViewCell.m in Sources */,
+				2A1786381ABD9DDC005DD654 /* CreateLabelTopTableViewCell.m in Sources */,
 				2AE2DAD31ABA85C2007F7026 /* ViewController.m in Sources */,
 				2A1786341ABD9B79005DD654 /* CreateLabelViewController.m in Sources */,
 				2AE2DAFC1ABA8AF5007F7026 /* ETCollectionViewCell.m in Sources */,
