@@ -55,6 +55,11 @@ typedef enum : NSInteger{
     
     tableCreate.delegate = self;
     tableCreate.dataSource = self;
+    
+    tableCreate.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    tableCreate.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    
+    
     [self.view addSubview:tableCreate];
     
     UINib *nibTop = [UINib
@@ -345,7 +350,7 @@ typedef enum : NSInteger{
                            HEIGHT_SMALL_ROW - marginTextField);
                 tfTitle.delegate = self;
                 tfTitle.borderStyle = UITextBorderStyleNone;
-                
+                tfTitle.tag = CreateSection1CellTypeTitle;
                 
                 tfTitle.placeholder = @"タイトルを入力";
                 tfTitle.borderStyle = UITextBorderStyleNone;
@@ -367,6 +372,7 @@ typedef enum : NSInteger{
                  CGRectMake(0, 0,
                             self.view.bounds.size.width - 2 * marginTextField,
                             HEIGHT_LARGE_ROW - marginTextField)];
+                textView.tag = CreateSection1CellTypeMain;
                 textView.placeholder = @"テキストを入力してください";
                 textView.placeholderColor = [UIColor redColor];
                 textView.delegate = self;
@@ -445,6 +451,39 @@ typedef enum : NSInteger{
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+    //キーボードでコンテンツサイズが通常よりも長くなっている可能性があるので
+    //(スクロールされたらkeyboardを解除する設定になっているので)キーボード解除と同時にコンテンツサイズを元に戻す
+    
+    
+    
+    //[self setContentSizeMinimum];
+}
+
+-(void)setContentSizeMinimum{
+    
+    //最後のセルを取得
+//    UITableViewCell *cellLast = [tableCreate c]
+    int lastSection = (int)[tableCreate numberOfSections]-1;
+    int lastRow =(int)[tableCreate numberOfRowsInSection:lastSection]-1;
+    NSIndexPath *lastIndexPath =
+    [NSIndexPath indexPathForRow:lastRow
+                       inSection:lastSection];
+    
+    NSLog(@"lastIndexpath = %@", lastIndexPath);
+    
+    //最後のセルの位置yLastと高さhLastを取得
+    CGRect rectLast = [tableCreate rectForRowAtIndexPath:lastIndexPath];
+    int yLast = rectLast.origin.y;
+    int hLast = rectLast.size.height;
+    
+    NSLog(@"ylast = %d, hLast = %d", yLast, hLast);
+    
+    //必要ないと思うが、念のため解放の用意
+    lastIndexPath = nil;
+    //minimum:contentsize = yLast+hLast
+    [tableCreate setContentSize:CGSizeMake(tableCreate.contentSize.width,
+                                           yLast + hLast)];
+    
 }
 
 
@@ -457,31 +496,29 @@ typedef enum : NSInteger{
     return YES;
 }
 
-//textviewやtextfieldがdelegateされた時に所属するセル（自体）もしくはindexpathを取得するためのメソッド
--(NSIndexPath *)getIndexPathFromText:(id)sender{
-    if([sender isKindOfClass:[UITextView class]] ||
-       [sender isKindOfClass:[UITextField class]]){
-        
-        NSIndexPath *indexPath = nil;
-        
-        
-        return indexPath;
-        
-    }
-    
-    return nil;
-}
-
 #pragma mark - textView delegate
 
 //編集される直前に呼ばれるメソッド
 -(BOOL)textViewShouldBeginEditing:(UITextView*)textView{
+    //編集が開始されたらその行を一番上に持っていく
+    NSLog(@"%s : 編集開始", __func__);
+//    //textfieldが存在するインデックスパス
+//    NSIndexPath *belongIndexPath =
+//    [self getIndexPathFromText:textView];
+//    
+//    
+//    [tableCreate scrollToRowAtIndexPath:belongIndexPath
+//                       atScrollPosition:UITableViewScrollPositionTop
+//                               animated:YES];
+//
+    [self scrollTopWhenTextActivate:textView];
     
-//    tableCreate scrollto
     return YES;
 }
 //編集が終了する直前に呼ばれるメソッド
 -(BOOL)textViewShouldEndEditing:(UITextView*)textView{
+    //コンテンツが長くなっている可能性があるので短くする
+    [self setContentSizeMinimum];
     return YES;
 }
 
@@ -495,10 +532,17 @@ typedef enum : NSInteger{
 
 //テキストフィールドを編集する直前に呼び出される
 -(BOOL)textFieldShouldBeginEditing:(UITextField*)textField{
+    
+    //編集が開始されたらその行を一番上に持っていく
+    NSLog(@"%s : 編集開始", __func__);
+    [self scrollTopWhenTextActivate:textField];
+    
     return YES;
 }
 //テキストフィールドの編集が終了する直前に呼び出される
 -(BOOL)textFieldShouldEndEditing:(UITextField*)textField{
+    //コンテンツが長くなっている可能性があるので短くする
+    [self setContentSizeMinimum];
     return YES;
 }
 //テキストフィールドを編集する直後に呼び出される
@@ -511,6 +555,65 @@ typedef enum : NSInteger{
 //クリアボタンがタップされた時に呼ばれる(クリアしたい場合はYESを返す)
 -(BOOL)textFieldShouldClear:(UITextField*)textField{
     return YES;
+}
+
+
+
+#pragma mark - text scroll up
+-(void)scrollTopWhenTextActivate:(UIView *)text{
+    
+    //textfieldが存在するインデックスパス
+    NSIndexPath *belongIndexPath =
+    [self getIndexPathFromText:text];
+    
+    
+//    [tableCreate scrollToRowAtIndexPath:belongIndexPath
+//                       atScrollPosition:UITableViewScrollPositionTop
+//                               animated:YES];
+    
+    //アニメーションでcontentoffsetを指定(完了ブロックでトップまで移動できたか判定して再度アニメーションするのは２段階になってしまうのでボツ)
+    //contentSizeとindexpathの位置を特定して、トップに移動することができないとわかったらcontentsizeのheightを長くする
+    
+    int allContentLength = tableCreate.contentSize.height;
+    
+    
+    CGRect rect0 = [tableCreate rectForRowAtIndexPath:belongIndexPath];
+    
+    //テキストが所属しているセルの位置が下位置すぎる場合はcontentSizeの関係でトップまで行かない可能性があるので長くしてあげる
+    if(rect0.origin.y + self.view.bounds.size.height-64 >= allContentLength){
+        //セル位置にナビバーを考慮した画面長を足すとコンテンツサイズを超過してしまう場合：セル位置が下すぎる場合
+        tableCreate.contentSize = CGSizeMake(tableCreate.contentSize.width,
+                                             rect0.origin.y + self.view.bounds.size.height-64);
+    }
+    
+    //[tableCreate scrollRectToVisible:rect0 animated:YES];
+    [tableCreate setContentOffset:CGPointMake(rect0.origin.x, rect0.origin.y-64) animated:YES];
+    
+//    NSLog(@"%s height = %d, y0 = %d", __func__, allContentLength, y0);
+    
+    
+}
+
+
+//textviewやtextfieldがdelegateされた時に所属するセル（自体）もしくはindexpathを取得するためのメソッド
+-(NSIndexPath *)getIndexPathFromText:(UIView *)sender{
+    if([sender isKindOfClass:[UITextView class]] ||
+       [sender isKindOfClass:[UITextField class]]){
+        
+        
+        //タグ付けされたtextに基づいて位置を特定する
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag
+                                                    inSection:1];
+        
+        
+        NSLog(@"%s, from = %@ , return = %@", __func__,
+              [sender class],
+              indexPath);
+        return indexPath;
+        
+    }
+    
+    return nil;
 }
 
 
