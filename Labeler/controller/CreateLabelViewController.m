@@ -11,6 +11,9 @@
 
 #define HEIGHT_HEADER1 64
 
+#define HEIGHT_SMALL_ROW 70
+#define HEIGHT_LARGE_ROW 200
+
 @interface CreateLabelViewController ()
 
 typedef enum : NSInteger{
@@ -35,6 +38,9 @@ typedef enum : NSInteger{
     UITableView *tableCreate;
     
     UILabel *labelExplain;
+    
+    int marginLabel;
+    int marginTextField;
 }
 
 - (void)viewDidLoad {
@@ -43,8 +49,9 @@ typedef enum : NSInteger{
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    tableCreate = [[UITableView alloc]initWithFrame:self.view.bounds
-                                            style:UITableViewStylePlain];
+    tableCreate = [[UITableView alloc]
+                   initWithFrame:self.view.bounds
+                   style:UITableViewStyleGrouped];
     
     tableCreate.delegate = self;
     tableCreate.dataSource = self;
@@ -58,13 +65,13 @@ typedef enum : NSInteger{
     
     
     
-    int marginSideInLabel = 30;
+    marginLabel = 30;
     //MMDrawerの特性として右側が少し表示されないのでその分(以下)を考慮したマージンにする必要がある
     
     labelExplain =
     [[UILabel alloc]initWithFrame:
-     CGRectMake(marginSideInLabel, 0,
-                self.view.bounds.size.width-marginSideInLabel*2,30)];
+     CGRectMake(marginLabel, marginLabel,
+                self.view.bounds.size.width-marginLabel*2,30)];
     labelExplain.text = @"テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト";
     labelExplain.font = [UIFont systemFontOfSize:15.f];
     labelExplain.numberOfLines = 0;
@@ -156,8 +163,19 @@ typedef enum : NSInteger{
          initWithFrame:viewHeader.bounds];
         labelHeader.text = @"レビュー作成";
         labelHeader.textColor = [UIColor whiteColor];
-//        labelHeader.font =
-//        [UIFont fonthiraka]
+        labelHeader.font =
+        [UIFont fontHirakakuWithSize:17.f];
+        labelHeader.textAlignment =
+        NSTextAlignmentCenter;
+        [labelHeader sizeToFit];
+        
+        labelHeader.center = viewHeader.center;
+        
+        [viewHeader addSubview:labelHeader];
+        
+        
+        
+        
         
         return viewHeader;
     }
@@ -169,12 +187,12 @@ typedef enum : NSInteger{
     if(indexPath.section == 0){
         switch ((CreateSection0CellType)indexPath.row) {
             case CreateSection0CellTypeTop:{
-                return 350;
+                return 250;
                 break;
             }
             case CreateSection0CellTypeExplain:{
                 //ラベルの大きさよりも少しだけ余裕を持って表示する
-                return labelExplain.bounds.size.height + 50;
+                return labelExplain.bounds.size.height + 2 * marginLabel;
                 break;
             }
             default:{
@@ -183,7 +201,22 @@ typedef enum : NSInteger{
             }
         }
     }else{
-        return 50;
+        switch ((CreateSection1CellType)indexPath.row) {
+            case CreateSection1CellTypeTitle:
+            case CreateSection1CellTypeAddLink:
+            case CreateSection1CellTypeConfirm:
+            case CreateSection1CellTypeReserve:{
+             
+                return HEIGHT_SMALL_ROW;
+            }
+            case CreateSection1CellTypeMain:{
+                return HEIGHT_LARGE_ROW;
+                break;
+            }
+            default:
+                break;
+        }
+        return 0;
     }
     
     return 0;
@@ -255,8 +288,6 @@ typedef enum : NSInteger{
                 break;
             }
         }
-    }else if(indexPath.section == 1){
-        
     }
     
     static NSString *CellIdentifier = nil;
@@ -285,11 +316,88 @@ typedef enum : NSInteger{
         }
     }
     
-    //[cell.contentView addSubview:labelExplain];
     
-    return cell;
+    if(indexPath.section == 1){
+        
+        static NSString *CellIdentifier = nil;
+        if(CellIdentifier == nil)
+            CellIdentifier =
+            [NSString stringWithFormat:@"cell%d", (int)indexPath.row];//unique
+        UITableViewCell *cell =
+        [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        //
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]
+                    initWithStyle:UITableViewCellStyleDefault
+                    reuseIdentifier:CellIdentifier];
+        }
+        
+        
+        switch ((CreateSection1CellType)indexPath.row) {
+            case CreateSection1CellTypeTitle:{
+                //NSLog(@"title in cell");
+                UITextField *tfTitle = [[UITextField alloc]init];
+                //縦マージンは横マージンの半分
+                tfTitle.frame =
+                CGRectMake(0, 0,
+                           self.view.bounds.size.width - 2 * marginTextField,
+                           HEIGHT_SMALL_ROW - marginTextField);
+                tfTitle.delegate = self;
+                tfTitle.borderStyle = UITextBorderStyleNone;
+                
+                
+                tfTitle.placeholder = @"タイトルを入力";
+                tfTitle.borderStyle = UITextBorderStyleNone;
+                tfTitle.delegate = self;
+                //画像を表示しない
+                tfTitle.leftViewMode = UITextFieldViewModeNever;
+                tfTitle.returnKeyType = UIReturnKeySearch;
+                tfTitle.center = CGPointMake(self.view.bounds.size.width/2,
+                                             HEIGHT_SMALL_ROW/2);
+                
+                [cell.contentView addSubview:tfTitle];
+                break;
+            }
+            case CreateSection1CellTypeMain:{
+                
+                UIPlaceHolderTextView *textView =
+                [[UIPlaceHolderTextView alloc]
+                 initWithFrame:
+                 CGRectMake(0, 0,
+                            self.view.bounds.size.width - 2 * marginTextField,
+                            HEIGHT_LARGE_ROW - marginTextField)];
+                textView.placeholder = @"テキストを入力してください";
+                textView.placeholderColor = [UIColor redColor];
+                textView.delegate = self;
+                [cell.contentView addSubview:textView];
+                break;
+            }
+            case CreateSection1CellTypeAddLink:{
+                
+                break;
+            }
+            case CreateSection1CellTypeConfirm:{
+                
+                break;
+            }
+            case CreateSection1CellTypeReserve:{
+                
+                break;
+            }
+            case CreateSection1CellTypeFinal:{
+                
+                break;
+            }
+            default:
+                break;
+        }
     
+        return cell;
     
+    }
+    
+    return nil;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -338,5 +446,73 @@ typedef enum : NSInteger{
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
 }
+
+
+#pragma mark - textView and textField delegate methods
+
+//textFieldもしくはtextViewで入力が検知されたら発動(アクティブになったら、、ではないので注意が必要)
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    // ここに入力検知時に実行させたい処理を記述
+    NSLog(@"%s", __func__);
+    return YES;
+}
+
+//textviewやtextfieldがdelegateされた時に所属するセル（自体）もしくはindexpathを取得するためのメソッド
+-(NSIndexPath *)getIndexPathFromText:(id)sender{
+    if([sender isKindOfClass:[UITextView class]] ||
+       [sender isKindOfClass:[UITextField class]]){
+        
+        NSIndexPath *indexPath = nil;
+        
+        
+        return indexPath;
+        
+    }
+    
+    return nil;
+}
+
+#pragma mark - textView delegate
+
+//編集される直前に呼ばれるメソッド
+-(BOOL)textViewShouldBeginEditing:(UITextView*)textView{
+    
+//    tableCreate scrollto
+    return YES;
+}
+//編集が終了する直前に呼ばれるメソッド
+-(BOOL)textViewShouldEndEditing:(UITextView*)textView{
+    return YES;
+}
+
+
+#pragma mark - textField delegate
+// キーボードのReturnボタンがタップされたらキーボードを閉じるようにする
+-(BOOL)textFieldShouldReturn:(UITextField*)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+//テキストフィールドを編集する直前に呼び出される
+-(BOOL)textFieldShouldBeginEditing:(UITextField*)textField{
+    return YES;
+}
+//テキストフィールドの編集が終了する直前に呼び出される
+-(BOOL)textFieldShouldEndEditing:(UITextField*)textField{
+    return YES;
+}
+//テキストフィールドを編集する直後に呼び出される
+-(void)textFieldDidBeginEditing:(UITextField*)textField{
+}
+//テキストフィールドの編集が終了する直後に呼び出される
+-(void)textFieldDidEndEditing:(UITextField*)textField{
+    
+}
+//クリアボタンがタップされた時に呼ばれる(クリアしたい場合はYESを返す)
+-(BOOL)textFieldShouldClear:(UITextField*)textField{
+    return YES;
+}
+
+
 
 @end

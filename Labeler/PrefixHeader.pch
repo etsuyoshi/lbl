@@ -18,8 +18,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "UIPlaceHolderTextView.h"
 
-//#import "UIFont+Common.h"
+#import "UIFont+Common.h"
 
 //#import "AppDelegate.h"
 //#import "ETCipherClass.h"
@@ -40,7 +41,7 @@
 //#import <Crashlytics/Crashlytics.h>
 //#import <SDWebImage/UIImageView+WebCache.h>
 //
-//#import "UIColor+ETColor.h"
+#import "UIColor+ETColor.h"
 //#import "ETVariationStockButton.h"
 //#import "SVProgressHUD.h"
 ////    #import "ETSuperButton.h"

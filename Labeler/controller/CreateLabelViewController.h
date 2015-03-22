@@ -10,6 +10,8 @@
 
 @interface CreateLabelViewController : UIViewController
 <UITableViewDelegate,
-UITableViewDataSource>
+UITableViewDataSource,
+UITextFieldDelegate,
+UITextViewDelegate>
 
 @end
