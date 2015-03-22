@@ -24,6 +24,8 @@
 		2A1786381ABD9DDC005DD654 /* CreateLabelTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1786361ABD9DDC005DD654 /* CreateLabelTopTableViewCell.m */; };
 		2A1786391ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1786371ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib */; };
 		2A17863B1ABD9E7A005DD654 /* icon_arrowToLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A17863A1ABD9E7A005DD654 /* icon_arrowToLeft.png */; };
+		2A1786401ABDAB89005DD654 /* UIColor+ETColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A17863D1ABDAB89005DD654 /* UIColor+ETColor.m */; };
+		2A1786411ABDAB89005DD654 /* UIFont+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A17863F1ABDAB89005DD654 /* UIFont+Common.m */; };
 		2AE2DACD1ABA85C2007F7026 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACC1ABA85C2007F7026 /* main.m */; };
 		2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACF1ABA85C2007F7026 /* AppDelegate.m */; };
 		2AE2DAD31ABA85C2007F7026 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DAD21ABA85C2007F7026 /* ViewController.m */; };
@@ -112,6 +114,10 @@
 		2A1786361ABD9DDC005DD654 /* CreateLabelTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateLabelTopTableViewCell.m; sourceTree = "<group>"; };
 		2A1786371ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateLabelTopTableViewCell.xib; sourceTree = "<group>"; };
 		2A17863A1ABD9E7A005DD654 /* icon_arrowToLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_arrowToLeft.png; sourceTree = "<group>"; };
+		2A17863C1ABDAB89005DD654 /* UIColor+ETColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ETColor.h"; sourceTree = "<group>"; };
+		2A17863D1ABDAB89005DD654 /* UIColor+ETColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ETColor.m"; sourceTree = "<group>"; };
+		2A17863E1ABDAB89005DD654 /* UIFont+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Common.h"; sourceTree = "<group>"; };
+		2A17863F1ABDAB89005DD654 /* UIFont+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Common.m"; sourceTree = "<group>"; };
 		2AE2DAC71ABA85C2007F7026 /* Labeler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Labeler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE2DACB1ABA85C2007F7026 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE2DACC1ABA85C2007F7026 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -362,6 +368,10 @@
 		2AE2DAF31ABA8817007F7026 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				2A17863C1ABDAB89005DD654 /* UIColor+ETColor.h */,
+				2A17863D1ABDAB89005DD654 /* UIColor+ETColor.m */,
+				2A17863E1ABDAB89005DD654 /* UIFont+Common.h */,
+				2A17863F1ABDAB89005DD654 /* UIFont+Common.m */,
 				2AE2DAFE1ABA8BD3007F7026 /* ETCommonMethods.h */,
 				2AE2DAFF1ABA8BD3007F7026 /* ETCommonMethods.m */,
 			);
@@ -635,7 +645,9 @@
 				2AE2DAFC1ABA8AF5007F7026 /* ETCollectionViewCell.m in Sources */,
 				2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */,
 				2A1786191ABD14A5005DD654 /* ImageCenterTableViewCell.m in Sources */,
+				2A1786401ABDAB89005DD654 /* UIColor+ETColor.m in Sources */,
 				2AE2DB431ABA9523007F7026 /* LeftViewController.m in Sources */,
+				2A1786411ABDAB89005DD654 /* UIFont+Common.m in Sources */,
 				2AE2DACD1ABA85C2007F7026 /* main.m in Sources */,
 				2AE2DB001ABA8BD3007F7026 /* ETCommonMethods.m in Sources */,
 			);

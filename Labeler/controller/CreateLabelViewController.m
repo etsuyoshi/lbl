@@ -9,6 +9,8 @@
 #import "CreateLabelViewController.h"
 #import "CreateLabelTopTableViewCell.h"
 
+#define HEIGHT_HEADER1 64
+
 @interface CreateLabelViewController ()
 
 typedef enum : NSInteger{
@@ -121,19 +123,58 @@ typedef enum : NSInteger{
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return .1f;
+    }else if(section == 1){
+        return HEIGHT_HEADER1;
+    }
+    
     return .1f;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return nil;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return nil;
+    }else if(section == 1){
+        UIView *viewHeader =
+        [[UIView alloc]initWithFrame:
+         CGRectMake(0, 0, self.view.bounds.size.width,
+                    HEIGHT_HEADER1)];
+        
+        viewHeader.backgroundColor =
+        [UIColor colorWithRed:30.f/255.f
+                        green:30.f/255.f
+                         blue:30.f/255.f
+                        alpha:1.f];
+        
+        UILabel *labelHeader =
+        [[UILabel alloc]
+         initWithFrame:viewHeader.bounds];
+        labelHeader.text = @"レビュー作成";
+        labelHeader.textColor = [UIColor whiteColor];
+//        labelHeader.font =
+//        [UIFont fonthiraka]
+        
+        return viewHeader;
+    }
+    
+    return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 0){
         switch ((CreateSection0CellType)indexPath.row) {
             case CreateSection0CellTypeTop:{
-                return 400;
+                return 350;
                 break;
             }
             case CreateSection0CellTypeExplain:{
                 //ラベルの大きさよりも少しだけ余裕を持って表示する
-                return labelExplain.bounds.size.width + 50;
+                return labelExplain.bounds.size.height + 50;
                 break;
             }
             default:{
@@ -244,7 +285,7 @@ typedef enum : NSInteger{
         }
     }
     
-    [cell.contentView addSubview:labelExplain];
+    //[cell.contentView addSubview:labelExplain];
     
     return cell;
     
