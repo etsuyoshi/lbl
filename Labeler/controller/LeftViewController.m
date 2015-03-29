@@ -10,6 +10,9 @@
 #import "LeftArrowTableViewCell.h"
 #import "ImageCenterTableViewCell.h"
 
+#import "ViewController.h"
+#import "ReviewsViewController.h"
+
 #define HEIGHT_CELL_TYPE_ORDINARY 55
 #define HEIGHT_CELL_TYPE_LARGE 60
 
@@ -388,6 +391,66 @@ typedef enum : NSInteger{
     NSLog(@"%s", __func__);
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+//    LeftCellTypeSearch = 0,
+//    LeftCellTypeMyItem,
+//    LeftCellTypeNewReview,
+//    LeftCellTypeFollowLabeler,
+//    LeftCellTypeFollowBrand,
+//    LeftCellTypeUnderWrite,
+//    LeftCellTypeBuyAppli,
+//    LeftCellTypeFinal
+    
+    switch ((LeftCellType)indexPath.row) {
+        case LeftCellTypeSearch:{
+            NSLog(@"search -> nothing");
+            break;
+        }
+        case LeftCellTypeMyItem:{
+            
+            
+            NSLog(@"myitem");
+            ViewController * center = [[ViewController alloc] init];
+            
+            UINavigationController * nav = [[MMNavigationController alloc] initWithRootViewController:center];
+            
+            //そのまま中央画面を表示するパターン
+            [self.mm_drawerController
+             setCenterViewController:nav
+             withCloseAnimation:YES
+             completion:nil];
+            
+            //（中央画面が見えている場合は）一度中央画面を閉じてから中央画面を表示するパターン
+//            [self.mm_drawerController
+//             setCenterViewController:nav
+//             withFullCloseAnimation:YES
+//             completion:nil];
+            
+            return;
+            break;
+        }
+            
+        case LeftCellTypeNewReview:{
+            NSLog(@"newReview");
+            
+            
+            ReviewsViewController * center = [[ReviewsViewController alloc] init];
+            
+            UINavigationController * nav = [[MMNavigationController alloc] initWithRootViewController:center];
+            
+            //そのまま中央画面を表示するパターン
+            [self.mm_drawerController
+             setCenterViewController:nav
+             withCloseAnimation:YES
+             completion:nil];
+            
+            
+        }
+        
+        default:
+            break;
+    }
+        
 }
 
 
