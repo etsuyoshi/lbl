@@ -17,14 +17,21 @@
                 <subviews>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HLl-C4-Tc2">
                         <rect key="frame" x="66" y="22" width="246" height="45"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="動画リンクを入力" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P8f-ce-8xS">
+                                <rect key="frame" x="0.0" y="8" width="246" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.90193400349650354" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="P8f-ce-8xS" firstAttribute="width" secondItem="HLl-C4-Tc2" secondAttribute="width" id="4SD-Tj-k3K"/>
+                            <constraint firstAttribute="centerY" secondItem="P8f-ce-8xS" secondAttribute="centerY" id="akS-di-gcK"/>
+                            <constraint firstAttribute="centerX" secondItem="P8f-ce-8xS" secondAttribute="centerX" id="htq-pG-TYo"/>
+                        </constraints>
                     </view>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="動画リンクを入力" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P8f-ce-8xS">
-                        <rect key="frame" x="66" y="30" width="246" height="30"/>
-                        <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2g9-cn-FU9">
                         <rect key="frame" x="8" y="22" width="50" height="45"/>
                         <color key="backgroundColor" red="1" green="0.90032233391608396" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,19 +48,17 @@
                 </subviews>
                 <color key="backgroundColor" red="1" green="0.50524475524475521" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="2g9-cn-FU9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="PSk-uh-gEc"/>
+                    <constraint firstItem="2g9-cn-FU9" firstAttribute="left" secondItem="H2p-sc-9uM" secondAttribute="left" constant="10" id="PSk-uh-gEc"/>
                     <constraint firstItem="HLl-C4-Tc2" firstAttribute="leading" secondItem="2g9-cn-FU9" secondAttribute="trailing" constant="8" id="RS7-1U-ah1"/>
-                    <constraint firstAttribute="centerY" secondItem="HLl-C4-Tc2" secondAttribute="centerY" id="S75-jI-Ede"/>
-                    <constraint firstItem="P8f-ce-8xS" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Tl4-TP-7ra"/>
                     <constraint firstItem="mMX-5p-fnA" firstAttribute="centerY" secondItem="2g9-cn-FU9" secondAttribute="centerY" constant="0.5" id="Wj0-uf-Ycj"/>
-                    <constraint firstItem="P8f-ce-8xS" firstAttribute="centerY" secondItem="2g9-cn-FU9" secondAttribute="centerY" constant="0.5" id="Y4w-K9-LU1"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="2g9-cn-FU9" secondAttribute="bottom" id="c6D-G3-oXB"/>
+                    <constraint firstAttribute="trailing" secondItem="HLl-C4-Tc2" secondAttribute="trailing" constant="10" id="Xmh-fm-RTe"/>
+                    <constraint firstAttribute="bottom" secondItem="2g9-cn-FU9" secondAttribute="bottom" constant="4" id="c6D-G3-oXB"/>
+                    <constraint firstItem="HLl-C4-Tc2" firstAttribute="height" secondItem="2g9-cn-FU9" secondAttribute="height" id="hYB-vF-HN2"/>
+                    <constraint firstItem="HLl-C4-Tc2" firstAttribute="centerY" secondItem="2g9-cn-FU9" secondAttribute="centerY" id="hu9-Jg-fQc"/>
                     <constraint firstItem="HLl-C4-Tc2" firstAttribute="height" secondItem="2g9-cn-FU9" secondAttribute="height" id="jev-Sc-ygY"/>
                     <constraint firstItem="mMX-5p-fnA" firstAttribute="centerX" secondItem="2g9-cn-FU9" secondAttribute="centerX" id="kSC-CS-IZn"/>
-                    <constraint firstItem="P8f-ce-8xS" firstAttribute="leading" secondItem="2g9-cn-FU9" secondAttribute="trailing" constant="8" id="nfX-Zx-52r"/>
                     <constraint firstItem="mMX-5p-fnA" firstAttribute="width" secondItem="2g9-cn-FU9" secondAttribute="height" multiplier="1:2" id="pKG-mk-6Z9"/>
                     <constraint firstItem="2g9-cn-FU9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="sR9-um-04Z"/>
-                    <constraint firstItem="HLl-C4-Tc2" firstAttribute="width" secondItem="P8f-ce-8xS" secondAttribute="width" id="y58-jd-Hiy"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="1" green="0.50524475524475521" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>

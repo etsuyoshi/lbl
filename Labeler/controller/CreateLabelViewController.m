@@ -7,7 +7,8 @@
 //
 
 #import "CreateLabelViewController.h"
-#import "CreateLabelTopTableViewCell.h"
+#import "CreateLabelTopTableViewCell.h"//垂直マージン１０
+#import "ImageCenter2TableViewCell.h"//垂直マージン５
 #import "AddLinkTableViewCell.h"
 
 //下書き保存、確定ボタン
@@ -84,6 +85,11 @@ typedef enum : NSInteger{
                         bundle:nil];
     [tableCreate registerNib:nibButton
       forCellReuseIdentifier:@"imageCenterTableViewCell"];
+    UINib *nibButton2 = [UINib
+                         nibWithNibName:@"ImageCenter2TableViewCell"
+                         bundle:nil];
+    [tableCreate registerNib:nibButton2
+      forCellReuseIdentifier:@"imageCenter2TableViewCell"];
     
     
     
@@ -435,6 +441,8 @@ typedef enum : NSInteger{
                 [[UITapGestureRecognizer alloc]
                  initWithTarget:self action:@selector(tappedAddLink:)];
                 [cellAdd.viewBackOfImv addGestureRecognizer:tapGesture];
+                cellAdd.tfLink.tag = (int)indexPath.row;
+                cellAdd.tfLink.delegate = self;
                 
                 cellAdd.selectionStyle =
                 UITableViewCellSelectionStyleNone;
@@ -446,15 +454,17 @@ typedef enum : NSInteger{
                 
                 break;
             }
-            case CreateSection1CellTypeConfirm:{
+            case CreateSection1CellTypeReserve:{
                 
-                static NSString *CellIdentifierButton =
-                @"imageCenterTableViewCell";
+                static NSString *CellIdentifierButton2 =
+                @"imageCenter2TableViewCell";
                 
                 ImageCenterTableViewCell *cellButton =
-                [tableView dequeueReusableCellWithIdentifier:CellIdentifierButton];
+                [tableView dequeueReusableCellWithIdentifier:CellIdentifierButton2];
+                cellButton.backgroundColor = [UIColor lightGrayColor];
                 
                 [cellButton.lblCenter setText:@"下書き保存"];
+                cellButton.lblCenter.backgroundColor = [UIColor grayColor];
                 
                 cellButton.lblCenter.userInteractionEnabled = YES;
                 UITapGestureRecognizer *tapGesture =
@@ -466,7 +476,27 @@ typedef enum : NSInteger{
                 
                 break;
             }
-            case CreateSection1CellTypeReserve:{
+            case CreateSection1CellTypeConfirm:{
+                
+                static NSString *CellIdentifierButton2 =
+                @"imageCenter2TableViewCell";
+                
+                ImageCenterTableViewCell *cellButton =
+                [tableView dequeueReusableCellWithIdentifier:CellIdentifierButton2];
+                cellButton.backgroundColor = [UIColor lightGrayColor];
+                
+                [cellButton.lblCenter setText:@"確定"];
+                cellButton.lblCenter.backgroundColor =
+                [UIColor redColor];
+                
+                cellButton.lblCenter.userInteractionEnabled = YES;
+                UITapGestureRecognizer *tapGesture =
+                [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedConfirm:)];
+                [cellButton.lblCenter addGestureRecognizer:tapGesture];
+                
+                
+                return cellButton;
+                
                 
                 break;
             }
@@ -651,12 +681,13 @@ typedef enum : NSInteger{
     //contentSizeとindexpathの位置を特定して、トップに移動することができないとわかったらcontentsizeのheightを長くする
     
     int allContentLength = tableCreate.contentSize.height;
-    
+    NSLog(@"allContentLength = %d", allContentLength);
     
     CGRect rect0 = [tableCreate rectForRowAtIndexPath:belongIndexPath];
     
     //テキストが所属しているセルの位置が下位置すぎる場合はcontentSizeの関係でトップまで行かない可能性があるので長くしてあげる
     if(rect0.origin.y + self.view.bounds.size.height-64 >= allContentLength){
+        NSLog(@"コンテンツサイズが足りないので長くする→%f", rect0.origin.y + self.view.bounds.size.height-64);
         //セル位置にナビバーを考慮した画面長を足すとコンテンツサイズを超過してしまう場合：セル位置が下すぎる場合
         tableCreate.contentSize = CGSizeMake(tableCreate.contentSize.width,
                                              rect0.origin.y + self.view.bounds.size.height-64);
@@ -675,6 +706,7 @@ typedef enum : NSInteger{
 -(NSIndexPath *)getIndexPathFromText:(UIView *)sender{
     if([sender isKindOfClass:[UITextView class]] ||
        [sender isKindOfClass:[UITextField class]]){
+        
         
         
         //タグ付けされたtextに基づいて位置を特定する
@@ -708,5 +740,13 @@ typedef enum : NSInteger{
     [SVProgressHUD showSuccessWithStatus:@"設定を保存します"];
     
 }
+-(void)tappedConfirm:(UIGestureRecognizer *)gesture{
+    NSLog(@"%s", __func__);
+    
+    
+    [SVProgressHUD showSuccessWithStatus:@"確定ボタンが押されました"];
+    
+}
+
 
 @end
