@@ -17,4 +17,5 @@
 
 + (UIFont *)fontHirakaku;
 + (UIFont *)fontHirakakuWithSize:(float)size;
++ (UIFont *)fontHirakaku3WithSize:(float)size;
 @end

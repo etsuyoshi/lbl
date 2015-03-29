@@ -29,6 +29,9 @@
 		2A1786451ABE609C005DD654 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1786441ABE609C005DD654 /* UIPlaceHolderTextView.m */; };
 		2A1F47F71AC7DA00003560B4 /* ImageCenter2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F47F51AC7DA00003560B4 /* ImageCenter2TableViewCell.m */; };
 		2A1F47F81AC7DA00003560B4 /* ImageCenter2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1F47F61AC7DA00003560B4 /* ImageCenter2TableViewCell.xib */; };
+		2A1F47FB1AC8232A003560B4 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F47FA1AC8232A003560B4 /* ReviewsViewController.m */; };
+		2A1F48001AC825F9003560B4 /* ReviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F47FE1AC825F9003560B4 /* ReviewTableViewCell.m */; };
+		2A1F48011AC825F9003560B4 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1F47FF1AC825F9003560B4 /* ReviewTableViewCell.xib */; };
 		2AE2DACD1ABA85C2007F7026 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACC1ABA85C2007F7026 /* main.m */; };
 		2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACF1ABA85C2007F7026 /* AppDelegate.m */; };
 		2AE2DAD31ABA85C2007F7026 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DAD21ABA85C2007F7026 /* ViewController.m */; };
@@ -129,6 +132,11 @@
 		2A1F47F41AC7DA00003560B4 /* ImageCenter2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCenter2TableViewCell.h; sourceTree = "<group>"; };
 		2A1F47F51AC7DA00003560B4 /* ImageCenter2TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCenter2TableViewCell.m; sourceTree = "<group>"; };
 		2A1F47F61AC7DA00003560B4 /* ImageCenter2TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCenter2TableViewCell.xib; sourceTree = "<group>"; };
+		2A1F47F91AC8232A003560B4 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
+		2A1F47FA1AC8232A003560B4 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
+		2A1F47FD1AC825F9003560B4 /* ReviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTableViewCell.h; sourceTree = "<group>"; };
+		2A1F47FE1AC825F9003560B4 /* ReviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTableViewCell.m; sourceTree = "<group>"; wrapsLines = 1; };
+		2A1F47FF1AC825F9003560B4 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		2AE2DAC71ABA85C2007F7026 /* Labeler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Labeler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE2DACB1ABA85C2007F7026 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE2DACC1ABA85C2007F7026 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -264,6 +272,16 @@
 			name = launch;
 			sourceTree = "<group>";
 		};
+		2A1F47FC1AC825E3003560B4 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				2A1F47FD1AC825F9003560B4 /* ReviewTableViewCell.h */,
+				2A1F47FE1AC825F9003560B4 /* ReviewTableViewCell.m */,
+				2A1F47FF1AC825F9003560B4 /* ReviewTableViewCell.xib */,
+			);
+			name = Reviews;
+			sourceTree = "<group>";
+		};
 		2AE2DABE1ABA85C2007F7026 = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +361,8 @@
 				2AE2DB451ABA9535007F7026 /* RightViewController.m */,
 				2A1786321ABD9B79005DD654 /* CreateLabelViewController.h */,
 				2A1786331ABD9B79005DD654 /* CreateLabelViewController.m */,
+				2A1F47F91AC8232A003560B4 /* ReviewsViewController.h */,
+				2A1F47FA1AC8232A003560B4 /* ReviewsViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -350,6 +370,7 @@
 		2AE2DAF11ABA87E1007F7026 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				2A1F47FC1AC825E3003560B4 /* Reviews */,
 				2AF938EB1AC7C3F90000740F /* CreateLabel */,
 				2AE2DAF91ABA8AF5007F7026 /* ETCollectionViewCell.h */,
 				2AE2DAFA1ABA8AF5007F7026 /* ETCollectionViewCell.m */,
@@ -561,6 +582,7 @@
 				2AE2DB2A1ABA8DD6007F7026 /* a8.jpg in Resources */,
 				2AE2DB3B1ABA8DD6007F7026 /* a25.jpg in Resources */,
 				2AE2DB311ABA8DD6007F7026 /* a15.jpg in Resources */,
+				2A1F48011AC825F9003560B4 /* ReviewTableViewCell.xib in Resources */,
 				2A1786281ABD3E0D005DD654 /* search2.png in Resources */,
 				2A1786391ABD9DDC005DD654 /* CreateLabelTopTableViewCell.xib in Resources */,
 				2AE2DB251ABA8DD6007F7026 /* a3.jpg in Resources */,
@@ -670,6 +692,7 @@
 			files = (
 				2A1786101ABD0F0C005DD654 /* LeftArrowTableViewCell.m in Sources */,
 				2AE2DB461ABA9535007F7026 /* RightViewController.m in Sources */,
+				2A1F47FB1AC8232A003560B4 /* ReviewsViewController.m in Sources */,
 				2A17861E1ABD2459005DD654 /* LeftIconCenterImageTableViewCell.m in Sources */,
 				2AE2DB4C1ABA9781007F7026 /* MMExampleDrawerVisualStateManager.m in Sources */,
 				2AE2DB491ABA95DB007F7026 /* MMNavigationController.m in Sources */,
@@ -680,6 +703,7 @@
 				2A1786341ABD9B79005DD654 /* CreateLabelViewController.m in Sources */,
 				2AE2DAFC1ABA8AF5007F7026 /* ETCollectionViewCell.m in Sources */,
 				2AF938F41AC7C6F50000740F /* AddLinkTableViewCell.m in Sources */,
+				2A1F48001AC825F9003560B4 /* ReviewTableViewCell.m in Sources */,
 				2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */,
 				2A1786191ABD14A5005DD654 /* ImageCenterTableViewCell.m in Sources */,
 				2A1786401ABDAB89005DD654 /* UIColor+ETColor.m in Sources */,

@@ -487,16 +487,15 @@ typedef enum : NSInteger{
                 
                 [cellButton.lblCenter setText:@"確定"];
                 cellButton.lblCenter.backgroundColor =
-                [UIColor redColor];
+                RGB(190, 0, 5);
+                //[UIColor redColor];
                 
                 cellButton.lblCenter.userInteractionEnabled = YES;
                 UITapGestureRecognizer *tapGesture =
                 [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedConfirm:)];
                 [cellButton.lblCenter addGestureRecognizer:tapGesture];
                 
-                
                 return cellButton;
-                
                 
                 break;
             }

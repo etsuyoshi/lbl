@@ -36,4 +36,11 @@
     return [UIFont fontWithName:@"HiraKakuProN-W6" size:size];
 }
 
++ (UIFont *)fontHirakaku3WithSize:(float)size
+{
+    //    return [UIFont fontWithName:STRING_LABEL_FONT_HIRAKAKUPRON_W6 size:size];
+    return [UIFont fontWithName:@"HiraKakuProN-W3" size:size];
+}
+
+
 @end

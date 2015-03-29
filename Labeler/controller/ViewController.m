@@ -81,6 +81,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    NSLog(@"%s", __func__);
     
     [mainCollectionView reloadData];
 }
@@ -186,69 +187,14 @@
          forIndexPath:indexPath];
         
         
-        NSLog(@"image1 = %@\n->use=%@",
-              arrItems[indexPath.row][@"image1"],
-              arrItems[indexPath.row][@"image1"][@"origin"]);
-        
-        //商品名、説明文(ショップ名?ショップ説明のどちらか)、価格:2系のデータを使用しているのでテンポラリー
-//        [cell.itemNameLabel setText:arrItems[indexPath.row][@"name"]];
-//        [cell.shopNameLabel setText:arrItems[indexPath.row][@"shop"][@"name"]];
-//        [cell.priceLabel
-//         setText:
-//         [NSString stringWithFormat:@"%@円",
-//          [ETCommonMethods
-//           setCommaSeperateString:
-//           arrItems[indexPath.row][@"price"]]]];
-//        
-//        
-//        
-//        NSLog(@"itemNameLabel = %@, shopNameLabel = %@, priceLabel = %@",
-//              cell.itemNameLabel.text,
-//              cell.shopNameLabel.text,
-//              cell.priceLabel.text);
-//        
-//        
-//        //再利用した時に前のイメージが残ってしまうので、最初に透過度マックスにする
-//        cell.mainImage.alpha = 0.f;
-//        
-//        //縦線を細くする
-//        cell.viewVertLine.frame =
-//        CGRectMake(0, cell.viewVertLine.frame.origin.y,
-//                   ( 1.0 / [UIScreen mainScreen].scale) / 2.f + .1f,//どのスケールに対しても0.5px
-//                   cell.viewVertLine.bounds.size.height);
-//        //横線を細くする
-//        cell.viewHoriLine.frame =
-//        CGRectMake(cell.viewHoriLine.frame.origin.x,
-//                   //cell.viewHoriLine.frame.origin.y,
-//                   cell.bounds.size.height - (1.0/[UIScreen mainScreen].scale) / 2.f,//下限にセットする
-//                   cell.viewHoriLine.bounds.size.width,
-//                   (1.0 / [UIScreen mainScreen].scale) / 2.f + .1f );//0.5px
-//        
-//        
-//        [cell.mainImage
-//         sd_setImageWithURL:[NSURL URLWithString:arrItems[indexPath.row][@"image1"][@"w_300"]]
-//         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
-//             cell.mainImage.image = image;
-//             if(indexPath.row == 0 && indexPath.section == 0)isCompleteUpdateFirstItem = YES;
-//             [UIView
-//              animateWithDuration:.1f
-//              animations:^{
-//                  cell.mainImage.alpha = 1.0f;
-//              }
-//              completion:^(BOOL finished){
-//                  if(finished){
-//                      cell.mainImage.alpha = 1.0f;
-//                  }
-//              }];
-//         }];
-//        cell.backgroundColor = [UIColor whiteColor];
-        
         NSString *strImage = [NSString stringWithFormat:@"a%d.jpg",
-                              arc4random()%31];
+                              arc4random() % 30];
         [cell.mainImage setImage:[UIImage imageNamed:strImage]];
         
+        return cell;
+        
     }
-    return cell;
+    return nil;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView
