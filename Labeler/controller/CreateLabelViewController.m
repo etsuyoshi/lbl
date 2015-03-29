@@ -7,7 +7,12 @@
 //
 
 #import "CreateLabelViewController.h"
-#import "CreateLabelTopTableViewCell.h"
+#import "CreateLabelTopTableViewCell.h"//垂直マージン１０
+#import "ImageCenter2TableViewCell.h"//垂直マージン５
+#import "AddLinkTableViewCell.h"
+
+//下書き保存、確定ボタン
+#import "ImageCenterTableViewCell.h"
 
 #define HEIGHT_HEADER1 64
 
@@ -52,6 +57,7 @@ typedef enum : NSInteger{
     tableCreate = [[UITableView alloc]
                    initWithFrame:self.view.bounds
                    style:UITableViewStyleGrouped];
+    tableCreate.separatorColor = [UIColor clearColor];
     
     tableCreate.delegate = self;
     tableCreate.dataSource = self;
@@ -68,9 +74,28 @@ typedef enum : NSInteger{
     [tableCreate registerNib:nibTop
     forCellReuseIdentifier:@"createLabelTopTableViewCell"];
     
+    UINib *nibAdd = [UINib
+                     nibWithNibName:@"AddLinkTableViewCell"
+                     bundle:nil];
+    [tableCreate registerNib:nibAdd
+      forCellReuseIdentifier:@"addLinkTableViewCell"];
+    
+    UINib *nibButton = [UINib
+                        nibWithNibName:@"ImageCenterTableViewCell"
+                        bundle:nil];
+    [tableCreate registerNib:nibButton
+      forCellReuseIdentifier:@"imageCenterTableViewCell"];
+    UINib *nibButton2 = [UINib
+                         nibWithNibName:@"ImageCenter2TableViewCell"
+                         bundle:nil];
+    [tableCreate registerNib:nibButton2
+      forCellReuseIdentifier:@"imageCenter2TableViewCell"];
+    
+    
     
     
     marginLabel = 30;
+    marginTextField = 30;
     //MMDrawerの特性として右側が少し表示されないのでその分(以下)を考慮したマージンにする必要がある
     
     labelExplain =
@@ -339,9 +364,27 @@ typedef enum : NSInteger{
         }
         
         
+        //ios8以降の場合
+        for(UIView *subview in cell.contentView.subviews){
+            [subview removeFromSuperview];
+        }
+        
+        cell.backgroundColor = [UIColor lightGrayColor];
+        
         switch ((CreateSection1CellType)indexPath.row) {
             case CreateSection1CellTypeTitle:{
                 //NSLog(@"title in cell");
+                int marginTop = 20;
+                int marginLeft = 10;
+                UIView *viewWhite =
+                [[UIView alloc]
+                 initWithFrame:
+                 CGRectMake(marginLeft, marginTop,
+                            self.view.bounds.size.width - 2 * marginLeft,
+                            HEIGHT_SMALL_ROW - marginTop - marginLeft)];
+                viewWhite.backgroundColor = [UIColor whiteColor];
+                [cell.contentView addSubview:viewWhite];
+                
                 UITextField *tfTitle = [[UITextField alloc]init];
                 //縦マージンは横マージンの半分
                 tfTitle.frame =
@@ -366,28 +409,94 @@ typedef enum : NSInteger{
             }
             case CreateSection1CellTypeMain:{
                 
+                int marginTop = 0;
+                int marginLeft = 10;
+                
+                //表示位置が右に寄っているので幅を広くとることで開始位置を左位置に微調整
                 UIPlaceHolderTextView *textView =
                 [[UIPlaceHolderTextView alloc]
                  initWithFrame:
-                 CGRectMake(0, 0,
-                            self.view.bounds.size.width - 2 * marginTextField,
-                            HEIGHT_LARGE_ROW - marginTextField)];
+                 CGRectMake(marginLeft, marginTop,
+                            self.view.bounds.size.width - 2 * marginLeft,
+                            HEIGHT_LARGE_ROW - 2 * marginTop)];//上下のマージンはないものとする（必要だが念のため)
                 textView.tag = CreateSection1CellTypeMain;
-                textView.placeholder = @"テキストを入力してください";
-                textView.placeholderColor = [UIColor redColor];
+                textView.placeholder = @"本文を入力";
+                textView.placeholderColor = [UIColor lightGrayColor];
+                textView.center = CGPointMake(self.view.bounds.size.width/2,
+                                              HEIGHT_LARGE_ROW/2);
                 textView.delegate = self;
                 [cell.contentView addSubview:textView];
                 break;
             }
             case CreateSection1CellTypeAddLink:{
+                static NSString *CellIdentifierAdd =
+                @"addLinkTableViewCell";
+                
+                
+                AddLinkTableViewCell *cellAdd =
+                [tableView dequeueReusableCellWithIdentifier:CellIdentifierAdd];
+                
+                cellAdd.viewBackOfImv.userInteractionEnabled = YES;
+                UITapGestureRecognizer *tapGesture =
+                [[UITapGestureRecognizer alloc]
+                 initWithTarget:self action:@selector(tappedAddLink:)];
+                [cellAdd.viewBackOfImv addGestureRecognizer:tapGesture];
+                cellAdd.tfLink.tag = (int)indexPath.row;
+                cellAdd.tfLink.delegate = self;
+                
+                cellAdd.selectionStyle =
+                UITableViewCellSelectionStyleNone;
+                
+                cellAdd.backgroundColor = [UIColor lightGrayColor];
+                
+                
+                return cellAdd;
+                
+                break;
+            }
+            case CreateSection1CellTypeReserve:{
+                
+                static NSString *CellIdentifierButton2 =
+                @"imageCenter2TableViewCell";
+                
+                ImageCenterTableViewCell *cellButton =
+                [tableView dequeueReusableCellWithIdentifier:CellIdentifierButton2];
+                cellButton.backgroundColor = [UIColor lightGrayColor];
+                
+                [cellButton.lblCenter setText:@"下書き保存"];
+                cellButton.lblCenter.backgroundColor = [UIColor grayColor];
+                
+                cellButton.lblCenter.userInteractionEnabled = YES;
+                UITapGestureRecognizer *tapGesture =
+                [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedReserve:)];
+                [cellButton.lblCenter addGestureRecognizer:tapGesture];
+                
+                
+                return cellButton;
                 
                 break;
             }
             case CreateSection1CellTypeConfirm:{
                 
-                break;
-            }
-            case CreateSection1CellTypeReserve:{
+                static NSString *CellIdentifierButton2 =
+                @"imageCenter2TableViewCell";
+                
+                ImageCenterTableViewCell *cellButton =
+                [tableView dequeueReusableCellWithIdentifier:CellIdentifierButton2];
+                cellButton.backgroundColor = [UIColor lightGrayColor];
+                
+                [cellButton.lblCenter setText:@"確定"];
+                cellButton.lblCenter.backgroundColor =
+                [UIColor redColor];
+                
+                cellButton.lblCenter.userInteractionEnabled = YES;
+                UITapGestureRecognizer *tapGesture =
+                [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedConfirm:)];
+                [cellButton.lblCenter addGestureRecognizer:tapGesture];
+                
+                
+                return cellButton;
+                
                 
                 break;
             }
@@ -451,14 +560,11 @@ typedef enum : NSInteger{
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    //キーボードでコンテンツサイズが通常よりも長くなっている可能性があるので
-    //(スクロールされたらkeyboardを解除する設定になっているので)キーボード解除と同時にコンテンツサイズを元に戻す
     
-    
-    
-    //[self setContentSizeMinimum];
 }
 
+//キーボードでコンテンツサイズが通常よりも長くなっている可能性があるので
+//キーボード解除と同時にコンテンツサイズを元に戻す
 -(void)setContentSizeMinimum{
     
     //最後のセルを取得
@@ -575,12 +681,13 @@ typedef enum : NSInteger{
     //contentSizeとindexpathの位置を特定して、トップに移動することができないとわかったらcontentsizeのheightを長くする
     
     int allContentLength = tableCreate.contentSize.height;
-    
+    NSLog(@"allContentLength = %d", allContentLength);
     
     CGRect rect0 = [tableCreate rectForRowAtIndexPath:belongIndexPath];
     
     //テキストが所属しているセルの位置が下位置すぎる場合はcontentSizeの関係でトップまで行かない可能性があるので長くしてあげる
     if(rect0.origin.y + self.view.bounds.size.height-64 >= allContentLength){
+        NSLog(@"コンテンツサイズが足りないので長くする→%f", rect0.origin.y + self.view.bounds.size.height-64);
         //セル位置にナビバーを考慮した画面長を足すとコンテンツサイズを超過してしまう場合：セル位置が下すぎる場合
         tableCreate.contentSize = CGSizeMake(tableCreate.contentSize.width,
                                              rect0.origin.y + self.view.bounds.size.height-64);
@@ -601,6 +708,7 @@ typedef enum : NSInteger{
        [sender isKindOfClass:[UITextField class]]){
         
         
+        
         //タグ付けされたtextに基づいて位置を特定する
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag
                                                     inSection:1];
@@ -616,6 +724,29 @@ typedef enum : NSInteger{
     return nil;
 }
 
+//しゅんきさん確認(@20150320):画像選択ピッカー
+-(void)tappedAddLink:(UIGestureRecognizer *)gesture{
+    NSLog(@"%s", __func__);
+    
+    
+    [SVProgressHUD showSuccessWithStatus:@"写真選択ピッカーを表示します"];
+    
+}
+
+-(void)tappedReserve:(UIGestureRecognizer *)gesture{
+    NSLog(@"%s", __func__);
+    
+    
+    [SVProgressHUD showSuccessWithStatus:@"設定を保存します"];
+    
+}
+-(void)tappedConfirm:(UIGestureRecognizer *)gesture{
+    NSLog(@"%s", __func__);
+    
+    
+    [SVProgressHUD showSuccessWithStatus:@"確定ボタンが押されました"];
+    
+}
 
 
 @end
