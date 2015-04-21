@@ -32,6 +32,11 @@
 		2A1F47FB1AC8232A003560B4 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F47FA1AC8232A003560B4 /* ReviewsViewController.m */; };
 		2A1F48001AC825F9003560B4 /* ReviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F47FE1AC825F9003560B4 /* ReviewTableViewCell.m */; };
 		2A1F48011AC825F9003560B4 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1F47FF1AC825F9003560B4 /* ReviewTableViewCell.xib */; };
+		2A1F48041AC8338B003560B4 /* FollowingLabelersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F48031AC8338B003560B4 /* FollowingLabelersViewController.m */; };
+		2A1F48091AC8344D003560B4 /* FollowingLablelerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F48071AC8344D003560B4 /* FollowingLablelerTableViewCell.m */; };
+		2A1F480A1AC8344D003560B4 /* FollowingLablelerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A1F48081AC8344D003560B4 /* FollowingLablelerTableViewCell.xib */; };
+		2A1F480C1AC8360D003560B4 /* img_facemodel.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A1F480B1AC8360D003560B4 /* img_facemodel.png */; };
+		2A1F480E1AC83739003560B4 /* icon_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A1F480D1AC83739003560B4 /* icon_check.png */; };
 		2AE2DACD1ABA85C2007F7026 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACC1ABA85C2007F7026 /* main.m */; };
 		2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DACF1ABA85C2007F7026 /* AppDelegate.m */; };
 		2AE2DAD31ABA85C2007F7026 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DAD21ABA85C2007F7026 /* ViewController.m */; };
@@ -137,6 +142,13 @@
 		2A1F47FD1AC825F9003560B4 /* ReviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTableViewCell.h; sourceTree = "<group>"; };
 		2A1F47FE1AC825F9003560B4 /* ReviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTableViewCell.m; sourceTree = "<group>"; wrapsLines = 1; };
 		2A1F47FF1AC825F9003560B4 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
+		2A1F48021AC8338B003560B4 /* FollowingLabelersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingLabelersViewController.h; sourceTree = "<group>"; };
+		2A1F48031AC8338B003560B4 /* FollowingLabelersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingLabelersViewController.m; sourceTree = "<group>"; };
+		2A1F48061AC8344D003560B4 /* FollowingLablelerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingLablelerTableViewCell.h; sourceTree = "<group>"; };
+		2A1F48071AC8344D003560B4 /* FollowingLablelerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingLablelerTableViewCell.m; sourceTree = "<group>"; };
+		2A1F48081AC8344D003560B4 /* FollowingLablelerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowingLablelerTableViewCell.xib; sourceTree = "<group>"; };
+		2A1F480B1AC8360D003560B4 /* img_facemodel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_facemodel.png; sourceTree = "<group>"; };
+		2A1F480D1AC83739003560B4 /* icon_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_check.png; sourceTree = "<group>"; };
 		2AE2DAC71ABA85C2007F7026 /* Labeler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Labeler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE2DACB1ABA85C2007F7026 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE2DACC1ABA85C2007F7026 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -240,9 +252,10 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		2A1786121ABD143C005DD654 /* icon */ = {
+		2A1786121ABD143C005DD654 /* icon_check */ = {
 			isa = PBXGroup;
 			children = (
+				2A1F480D1AC83739003560B4 /* icon_check.png */,
 				2A17862B1ABD415E005DD654 /* search2_small.png */,
 				2A1786271ABD3E0D005DD654 /* search2.png */,
 				2A1786251ABD3B68005DD654 /* search.png */,
@@ -252,12 +265,13 @@
 				2AE2DB671ABBB635007F7026 /* icon_menu.png */,
 				2AE2DB681ABBB635007F7026 /* icon_profile.png */,
 			);
-			name = icon;
+			name = icon_check;
 			sourceTree = "<group>";
 		};
 		2A1786131ABD1444005DD654 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				2A1F480B1AC8360D003560B4 /* img_facemodel.png */,
 				2AF938F81AC7C91A0000740F /* img_plus.png */,
 				2A1786141ABD1472005DD654 /* img_logout.png */,
 			);
@@ -280,6 +294,16 @@
 				2A1F47FF1AC825F9003560B4 /* ReviewTableViewCell.xib */,
 			);
 			name = Reviews;
+			sourceTree = "<group>";
+		};
+		2A1F48051AC83426003560B4 /* FollowingLablers */ = {
+			isa = PBXGroup;
+			children = (
+				2A1F48061AC8344D003560B4 /* FollowingLablelerTableViewCell.h */,
+				2A1F48071AC8344D003560B4 /* FollowingLablelerTableViewCell.m */,
+				2A1F48081AC8344D003560B4 /* FollowingLablelerTableViewCell.xib */,
+			);
+			name = FollowingLablers;
 			sourceTree = "<group>";
 		};
 		2AE2DABE1ABA85C2007F7026 = {
@@ -363,6 +387,8 @@
 				2A1786331ABD9B79005DD654 /* CreateLabelViewController.m */,
 				2A1F47F91AC8232A003560B4 /* ReviewsViewController.h */,
 				2A1F47FA1AC8232A003560B4 /* ReviewsViewController.m */,
+				2A1F48021AC8338B003560B4 /* FollowingLabelersViewController.h */,
+				2A1F48031AC8338B003560B4 /* FollowingLabelersViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -370,6 +396,7 @@
 		2AE2DAF11ABA87E1007F7026 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				2A1F48051AC83426003560B4 /* FollowingLablers */,
 				2A1F47FC1AC825E3003560B4 /* Reviews */,
 				2AF938EB1AC7C3F90000740F /* CreateLabel */,
 				2AE2DAF91ABA8AF5007F7026 /* ETCollectionViewCell.h */,
@@ -458,7 +485,7 @@
 			children = (
 				2A1786201ABD333E005DD654 /* launch */,
 				2A1786131ABD1444005DD654 /* image */,
-				2A1786121ABD143C005DD654 /* icon */,
+				2A1786121ABD143C005DD654 /* icon_check */,
 			);
 			path = material;
 			sourceTree = "<group>";
@@ -575,6 +602,8 @@
 			files = (
 				2AE2DB2B1ABA8DD6007F7026 /* a9.jpg in Resources */,
 				2AE2DB3E1ABA8DD6007F7026 /* a28.jpg in Resources */,
+				2A1F480E1AC83739003560B4 /* icon_check.png in Resources */,
+				2A1F480A1AC8344D003560B4 /* FollowingLablelerTableViewCell.xib in Resources */,
 				2AE2DB291ABA8DD6007F7026 /* a7.jpg in Resources */,
 				2AE2DB691ABBB635007F7026 /* icon_arrowToRight.png in Resources */,
 				2A17861F1ABD2459005DD654 /* LeftIconCenterImageTableViewCell.xib in Resources */,
@@ -612,6 +641,7 @@
 				2A1786111ABD0F0C005DD654 /* LeftArrowTableViewCell.xib in Resources */,
 				2AE2DB341ABA8DD6007F7026 /* a18.jpg in Resources */,
 				2AE2DAFD1ABA8AF5007F7026 /* ETCollectionViewCell.xib in Resources */,
+				2A1F480C1AC8360D003560B4 /* img_facemodel.png in Resources */,
 				2AE2DB241ABA8DD6007F7026 /* a2.jpg in Resources */,
 				2AE2DADB1ABA85C2007F7026 /* LaunchScreen.xib in Resources */,
 				2AE2DB391ABA8DD6007F7026 /* a23.jpg in Resources */,
@@ -705,10 +735,12 @@
 				2AF938F41AC7C6F50000740F /* AddLinkTableViewCell.m in Sources */,
 				2A1F48001AC825F9003560B4 /* ReviewTableViewCell.m in Sources */,
 				2AE2DAD01ABA85C2007F7026 /* AppDelegate.m in Sources */,
+				2A1F48041AC8338B003560B4 /* FollowingLabelersViewController.m in Sources */,
 				2A1786191ABD14A5005DD654 /* ImageCenterTableViewCell.m in Sources */,
 				2A1786401ABDAB89005DD654 /* UIColor+ETColor.m in Sources */,
 				2AE2DB431ABA9523007F7026 /* LeftViewController.m in Sources */,
 				2A1786411ABDAB89005DD654 /* UIFont+Common.m in Sources */,
+				2A1F48091AC8344D003560B4 /* FollowingLablelerTableViewCell.m in Sources */,
 				2AE2DACD1ABA85C2007F7026 /* main.m in Sources */,
 				2AE2DB001ABA8BD3007F7026 /* ETCommonMethods.m in Sources */,
 				2A1F47F71AC7DA00003560B4 /* ImageCenter2TableViewCell.m in Sources */,

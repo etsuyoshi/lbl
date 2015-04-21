@@ -91,6 +91,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    
+    mainCollectionView = nil;
+}
 
 
 
@@ -174,7 +180,7 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%s, row=%d", __func__, (int)indexPath.row);
+    NSLog(@"%s, section = %d, row=%d", __func__, (int)indexPath.section ,(int)indexPath.row);
     //    NSLog(@"cellForItemAtIndexPath");
     ETCollectionViewCell *cell = nil;
     

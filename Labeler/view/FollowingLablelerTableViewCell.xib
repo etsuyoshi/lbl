@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="followingLablerTableViewCell" rowHeight="85" id="KGk-i7-Jjw" customClass="FollowingLablelerTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="img_facemodel.png" translatesAutoresizingMaskIntoConstraints="NO" id="YjC-Xz-QDX">
+                        <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="YjC-Xz-QDX" secondAttribute="height" multiplier="1:1" id="oo1-m9-ZWx"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="SHUNKI.B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqL-J3-yza">
+                        <rect key="frame" x="93" y="8" width="81" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maA-62-HnQ">
+                        <rect key="frame" x="93" y="32" width="153" height="45"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_check.png" translatesAutoresizingMaskIntoConstraints="NO" id="4D2-je-lwa">
+                        <rect key="frame" x="291" y="28" width="29" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="4D2-je-lwa" secondAttribute="height" multiplier="1:1" id="amg-6u-AM4"/>
+                            <constraint firstAttribute="width" constant="30" id="dd2-4u-dqG"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_arrowToRight.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZMf-2l-mpG">
+                        <rect key="frame" x="254" y="28" width="29" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="ZMf-2l-mpG" secondAttribute="height" multiplier="1:1" id="kTb-fq-pum"/>
+                            <constraint firstAttribute="width" constant="30" id="vZo-0C-0jd"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="4D2-je-lwa" secondAttribute="centerY" id="1lG-lF-3fe"/>
+                    <constraint firstItem="4D2-je-lwa" firstAttribute="width" secondItem="4D2-je-lwa" secondAttribute="height" multiplier="1:1" id="2ZS-m0-1mc"/>
+                    <constraint firstItem="ZMf-2l-mpG" firstAttribute="width" secondItem="ZMf-2l-mpG" secondAttribute="height" multiplier="1:1" id="J54-ge-AVC"/>
+                    <constraint firstItem="maA-62-HnQ" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="JTa-GR-S9K"/>
+                    <constraint firstItem="TqL-J3-yza" firstAttribute="leading" secondItem="YjC-Xz-QDX" secondAttribute="trailing" constant="8" id="SXs-pW-ISG"/>
+                    <constraint firstItem="4D2-je-lwa" firstAttribute="right" secondItem="H2p-sc-9uM" secondAttribute="right" id="Tjx-u5-Rep"/>
+                    <constraint firstItem="4D2-je-lwa" firstAttribute="leading" secondItem="ZMf-2l-mpG" secondAttribute="trailing" constant="8" id="VAd-xR-ADT"/>
+                    <constraint firstItem="ZMf-2l-mpG" firstAttribute="centerY" secondItem="4D2-je-lwa" secondAttribute="centerY" id="YCZ-Ex-s2y"/>
+                    <constraint firstItem="YjC-Xz-QDX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YTy-Vp-dvf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YjC-Xz-QDX" secondAttribute="bottom" id="YhK-W8-RNv"/>
+                    <constraint firstItem="ZMf-2l-mpG" firstAttribute="leading" secondItem="maA-62-HnQ" secondAttribute="trailing" constant="8" id="ccT-vB-akk"/>
+                    <constraint firstItem="ZMf-2l-mpG" firstAttribute="leading" secondItem="TqL-J3-yza" secondAttribute="trailing" constant="119" id="oPr-Y4-vgc"/>
+                    <constraint firstItem="TqL-J3-yza" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="tAz-e7-ofG"/>
+                    <constraint firstItem="YjC-Xz-QDX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="tqF-FB-hSg"/>
+                    <constraint firstItem="4D2-je-lwa" firstAttribute="width" secondItem="4D2-je-lwa" secondAttribute="height" multiplier="1:1" id="uG9-qr-kRO"/>
+                    <constraint firstItem="maA-62-HnQ" firstAttribute="top" secondItem="TqL-J3-yza" secondAttribute="bottom" constant="3" id="yf6-sI-lPh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="330" y="228.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_arrowToRight.png" width="74" height="74"/>
+        <image name="icon_check.png" width="1032" height="1032"/>
+        <image name="img_facemodel.png" width="1162" height="1162"/>
+    </resources>
+</document>

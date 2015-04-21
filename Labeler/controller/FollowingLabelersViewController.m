@@ -1,54 +1,44 @@
 //
-//  ReviewsViewController.m
+//  FollowingLabelersViewController.m
 //  Labeler
 //
 //  Created by EndoTsuyoshi on 2015/03/29.
 //  Copyright (c) 2015年 com.endo. All rights reserved.
 //
 
-#import "ReviewsViewController.h"
-#import "ReviewTableViewCell.h"
+#import "FollowingLabelersViewController.h"
+#import "FollowingLablelerTableViewCell.h"
+#define HEIGHT_ROW 100
 
-#import "CreateLabelViewController.h"
-
-#define HEIGHT_ROW 80
-
-@interface ReviewsViewController ()
+@interface FollowingLabelersViewController ()
 
 @end
 
-@implementation ReviewsViewController{
-    UITableView *tableReviews;
+@implementation FollowingLabelersViewController{
+    UITableView *tableLablers;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    tableReviews = [[UITableView alloc]
-                    initWithFrame:self.view.bounds
-                    style:UITableViewStyleGrouped];
-    tableReviews.delegate = self;
-    tableReviews.dataSource = self;
     
-    UINib *nibCell = [UINib nibWithNibName:@"ReviewTableViewCell"
-                                    bundle:nil];
-    [tableReviews registerNib:nibCell
-       forCellReuseIdentifier:@"reviewTableViewCell"];
+    tableLablers = [[UITableView alloc]initWithFrame:self.view.bounds
+                                               style:UITableViewStyleGrouped];
+    tableLablers.delegate = self;
+    tableLablers.dataSource = self;
     
-    [self.view addSubview:tableReviews];
+    UINib *nibFollow = [UINib nibWithNibName:@"FollowingLablelerTableViewCell"
+                                      bundle:nil];
+    [tableLablers registerNib:nibFollow
+       forCellReuseIdentifier:@"followingLablelerTableViewCell"];
     
+    [self.view addSubview:tableLablers];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    
-    tableReviews = nil;
 }
 
 /*
@@ -60,7 +50,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 
 #pragma mark - tableview delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -89,14 +78,16 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *CellIdentifier = @"reviewTableViewCell";
+    static NSString *CellIdentifier = @"followingLablelerTableViewCell";
     
-    ReviewTableViewCell *cell =
+    FollowingLablelerTableViewCell *cell =
     [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    //cellArrow.lblItemName.text = @"マイアイテム";
+//    cellArrow.lblItemName.text = @"マイアイテム";
     
     return cell;
+    
+    return nil;
     
 }
 
@@ -105,11 +96,11 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    CreateLabelViewController *vc = [[CreateLabelViewController alloc]init];
-    /*
-     *vcを新規入力ではなく、編集モードにする
-     */
-    [self.navigationController pushViewController:vc animated:YES];
+//    CreateLabelViewController *vc = [[CreateLabelViewController alloc]init];
+//    /*
+//     *vcを新規入力ではなく、編集モードにする
+//     */
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -152,6 +143,8 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
 }
+
+
 
 
 @end
